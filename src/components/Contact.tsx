@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,6 +14,61 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".contact-header", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".contact-header",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(".contact-info", 
+        { opacity: 0, x: -50 },
+        {
+          scrollTrigger: {
+            trigger: ".contact-content",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(".contact-form", 
+        { opacity: 0, x: 50 },
+        {
+          scrollTrigger: {
+            trigger: ".contact-content",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +87,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} id="contact" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-t from-violet-950/20 via-transparent to-transparent" />
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
@@ -36,7 +95,7 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="contact-header text-center mb-16">
           <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
             Get In Touch
           </span>
@@ -48,9 +107,9 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="contact-content grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="contact-info space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-white mb-4">
                 Ready to start your project?
@@ -162,7 +221,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="gradient-border p-8">
+          <div className="contact-form gradient-border p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>

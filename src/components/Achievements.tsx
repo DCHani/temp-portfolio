@@ -1,5 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const achievements = [
   {
     title: "Top 15",
@@ -38,15 +44,72 @@ const certifications = [
 ];
 
 export default function Achievements() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".achievements-header", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".achievements-header",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(".achievement-card", 
+        { opacity: 0, scale: 0.9 },
+        {
+          scrollTrigger: {
+            trigger: ".achievements-grid",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          scale: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "back.out(1.2)",
+        }
+      );
+
+      gsap.fromTo(".certifications-section", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".certifications-section",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="achievements" className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} id="achievements" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-bg" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="achievements-header text-center mb-16">
           <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
             Recognition
           </span>
@@ -59,11 +122,11 @@ export default function Achievements() {
         </div>
 
         {/* Achievements Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="achievements-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className={`relative gradient-border p-6 text-center group hover:glow transition-all duration-300 ${
+              className={`achievement-card relative gradient-border p-6 text-center group hover:glow transition-all duration-300 ${
                 achievement.highlight ? "lg:transform lg:scale-105" : ""
               }`}
             >
@@ -96,7 +159,7 @@ export default function Achievements() {
         </div>
 
         {/* Certifications */}
-        <div className="gradient-border p-8">
+        <div className="certifications-section gradient-border p-8">
           <h3 className="text-2xl font-bold text-white mb-6 text-center">
             📜 Certifications
           </h3>

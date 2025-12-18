@@ -1,14 +1,79 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(".about-header", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".about-header",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      // Left side (code block) animation
+      gsap.fromTo(".about-visual", 
+        { opacity: 0, x: -60 },
+        {
+          scrollTrigger: {
+            trigger: ".about-visual",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      // Right side (content) animation
+      gsap.fromTo(".about-content", 
+        { opacity: 0, x: 60 },
+        {
+          scrollTrigger: {
+            trigger: ".about-content",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/10 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="about-header text-center mb-16">
           <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
             About Me
           </span>
@@ -22,7 +87,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image/Visual Side */}
-          <div className="relative">
+          <div className="about-visual relative">
             <div className="relative w-full aspect-square max-w-md mx-auto">
               {/* Decorative Elements */}
               <div className="absolute inset-0 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-3xl rotate-6 blur-xl" />
@@ -65,7 +130,7 @@ export default function About() {
           </div>
 
           {/* Content Side */}
-          <div className="space-y-6">
+          <div className="about-content space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-white">
               Turning Ideas Into{" "}
               <span className="gradient-text">Digital Reality</span>

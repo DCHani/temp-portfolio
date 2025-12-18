@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -74,14 +78,54 @@ const categories = ["All", "WEB APP", "AI / DATA"];
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const filteredProjects =
     activeCategory === "All"
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".projects-header", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".projects-header",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(".project-card", 
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: ".projects-grid",
+            start: "top 85%",
+            end: "top 45%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 0.7,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeCategory]);
+
   return (
-    <section id="projects" className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} id="projects" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-bg" />
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl -translate-y-1/2" />
@@ -89,7 +133,7 @@ export default function Projects() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="projects-header text-center mb-16">
           <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
             BUILT, NOT IMAGINED
           </span>
@@ -120,11 +164,11 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="projects-grid grid md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group relative gradient-border overflow-hidden"
+              className="project-card group relative gradient-border overflow-hidden"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >

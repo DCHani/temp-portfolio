@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
   {
@@ -85,15 +89,56 @@ function SkillBar({ name, level }: { name: string; level: number }) {
 }
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".skills-header", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".skills-header",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(".skill-card", 
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: {
+            trigger: ".skills-grid",
+            start: "top 85%",
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          stagger: 0.12,
+          duration: 0.6,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="skills" className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} id="skills" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-violet-950/10 via-transparent to-violet-950/10" />
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="skills-header text-center mb-16">
           <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
             Technical Skills
           </span>
@@ -106,11 +151,11 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="skills-grid grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="gradient-border p-6 hover:glow transition-all duration-300"
+              className="skill-card gradient-border p-6 hover:glow transition-all duration-300"
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
