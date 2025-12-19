@@ -9,62 +9,60 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Construction Company Website",
     description:
-      "A full-featured e-commerce platform with payment integration, inventory management, and real-time analytics dashboard.",
+      "A website for a construction company featuring project showcases, service details, and contact forms, with an aditional admin dashboard for managing content.",
     image: "/images/projects/project1.png",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Tailwind"],
+    tags: ["Next.js", "TypeScript", "Gsap", "PostgreSQL", "Tailwind", "Node.js"],
     category: "WEB APP",
-    demoUrl: "#",
+    demoUrl: "https://nassar-constraction.vercel.app",
     features: [
       "User authentication & authorization",
-      "Payment processing with Stripe",
+      "Smoothness integrated using Gsap",
       "Real-time inventory tracking",
     ],
   },
   {
     id: 2,
-    title: "AI Task Manager",
+    title: "Real-estate Company Website",
     description:
-      "Smart task management app powered by AI that automatically prioritizes and schedules your tasks based on deadlines and importance.",
+      "a modern website for a real-estate company with property listings, agent profiles, and an admin dashboard for content management.",
     image: "/images/projects/project2.png",
-    tags: ["React", "OpenAI", "Node.js", "MongoDB", "Socket.io"],
-    category: "AI / DATA",
-    demoUrl: "#",
+    tags: ["Next.js", "TypeScript", "Gsap", "PostgreSQL", "Tailwind", "Node.js"],
+    category: "WEB APP",
+    demoUrl: "https://www.nassargroupllc.com",
     features: [
-      "AI-powered task prioritization",
-      "Smart scheduling algorithm",
-      "Real-time collaboration features",
+      "Admin dashboard for content management",
+      "Real Time map integration",
+      "Stunning project showcases",
     ],
   },
   {
     id: 3,
-    title: "Real-time Chat Application",
-    description:
-      "A modern chat application with real-time messaging, file sharing, and video calling capabilities.",
+    title: "A delivery Company Website",
+    description: "A website for a delivery company featuring real-time tracking and forms to be filled by any type of user.",
     image: "/images/projects/project3.png",
-    tags: ["React", "Socket.io", "WebRTC", "Express", "Redis"],
+    tags: ["Next.js", "TypeScript", "Tailwind", "Javascript"],
     category: "WEB APP",
-    demoUrl: "#",
+    demoUrl: "https://www.areex-delivery.com",
     features: [
-      "Real-time messaging",
-      "Video & audio calling",
-      "End-to-end encryption",
+      "Real-time order tracking",
+      "Forms for different user types",
+      "Multi-language support",
     ],
   },
   {
     id: 4,
-    title: "Portfolio Dashboard",
-    description:
-      "Analytics dashboard for tracking investment portfolios with real-time market data and performance metrics.",
+    title: "An Insurance Company website",
+    description: "A website for an insurance company with policy details, claim forms, and interactive visualizations.",
     image: "/images/projects/project4.png",
     tags: ["Vue.js", "D3.js", "Python", "FastAPI", "PostgreSQL"],
     category: "WEB APP",
-    demoUrl: "#",
+    demoUrl: "https://minarcoins.com",
     features: [
-      "Real-time market data",
-      "Interactive charts & graphs",
-      "Portfolio performance tracking",
+      "Interactive data visualizations",
+      "Comprehensive policy details",
+      "User-friendly claim forms",
     ],
   },
 ];
@@ -83,7 +81,7 @@ export default function Projects() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".projects-header", 
+      gsap.fromTo(".projects-header",
         { opacity: 0, y: 40 },
         {
           scrollTrigger: {
@@ -99,7 +97,7 @@ export default function Projects() {
         }
       );
 
-      gsap.fromTo(".project-card", 
+      gsap.fromTo(".project-card",
         { opacity: 0, y: 50 },
         {
           scrollTrigger: {
@@ -148,11 +146,10 @@ export default function Projects() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === category
-                  ? "bg-linear-to-r from-violet-600 to-cyan-600 text-white glow"
-                  : "bg-violet-500/10 text-gray-400 hover:text-white hover:bg-violet-500/20 border border-violet-500/20"
-              }`}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
+                ? "bg-linear-to-r from-violet-600 to-cyan-600 text-white glow"
+                : "bg-violet-500/10 text-gray-400 hover:text-white hover:bg-violet-500/20 border border-violet-500/20"
+                }`}
             >
               {category}
             </button>
@@ -255,9 +252,8 @@ export default function Projects() {
 
               {/* Hover Glow Effect */}
               <div
-                className={`absolute inset-0 bg-linear-to-r from-violet-600/5 to-cyan-600/5 transition-opacity duration-300 pointer-events-none ${
-                  hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 bg-linear-to-r from-violet-600/5 to-cyan-600/5 transition-opacity duration-300 pointer-events-none ${hoveredProject === project.id ? "opacity-100" : "opacity-0"
+                  }`}
               />
             </div>
           ))}
