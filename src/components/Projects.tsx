@@ -137,7 +137,7 @@ export default function Projects() {
             <span className="gradient-text">Featured Projects</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Every card below maps to a real repo / demo. Explore my work showcasing
+            Every card below maps to a hosted running website. Explore my work showcasing
             innovative solutions and clean code.
           </p>
         </div>

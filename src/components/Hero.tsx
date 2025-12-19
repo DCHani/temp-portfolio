@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 
-const roles = ["Full Stack Developer", "UI/UX Designer", "Problem Solver", "Tech Enthusiast"];
+const roles = ["Full Stack Developer", "Machine Learning Engineer ", "Problem Solver", "Tech Enthusiast"];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -68,7 +68,7 @@ export default function Hero() {
         />
 
         {/* Grid Lines */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -89,7 +89,7 @@ export default function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-600/20 to-cyan-600/20 pointer-events-none" />
+            <div className="absolute inset-0 rounded-full bg-linear-to-br from-violet-600/20 to-cyan-600/20 pointer-events-none" />
           </div>
         </div>
 
