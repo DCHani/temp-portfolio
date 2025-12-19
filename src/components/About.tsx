@@ -69,7 +69,7 @@ export default function About() {
   return (
     <section ref={sectionRef} id="about" className="relative py-24 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/10 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-violet-950/10 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -173,7 +173,7 @@ export default function About() {
               <a
                 href="/Azzeddine Hani Benchalel.pdf"
                 download="Azzeddine_Hani_Benchalel_Resume.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold hover:opacity-90 transition-all duration-300 glow"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-semibold hover:opacity-90 transition-all duration-300 glow"
               >
                 <svg
                   className="w-5 h-5"

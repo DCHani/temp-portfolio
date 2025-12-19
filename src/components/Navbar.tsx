@@ -51,7 +51,7 @@ export default function Navbar() {
                 className="relative text-gray-300 hover:text-white transition-colors duration-300 group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-cyan-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-cyan-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -60,7 +60,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <a
               href="#contact"
-              className="px-4 py-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium hover:opacity-90 transition-opacity glow"
+              className="px-4 py-2 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-medium hover:opacity-90 transition-opacity glow"
             >
               Hire Me
             </a>
@@ -111,7 +111,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
-            className="block w-full text-center px-4 py-2 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium"
+            className="block w-full text-center px-4 py-2 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-medium"
           >
             Hire Me
           </a>

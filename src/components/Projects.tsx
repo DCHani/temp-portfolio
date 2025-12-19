@@ -150,7 +150,7 @@ export default function Projects() {
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? "bg-gradient-to-r from-violet-600 to-cyan-600 text-white glow"
+                  ? "bg-linear-to-r from-violet-600 to-cyan-600 text-white glow"
                   : "bg-violet-500/10 text-gray-400 hover:text-white hover:bg-violet-500/20 border border-violet-500/20"
               }`}
             >
@@ -175,7 +175,7 @@ export default function Projects() {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d15] via-[#0d0d15]/50 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#0d0d15] via-[#0d0d15]/50 to-transparent" />
               </div>
 
               <div className="p-6 space-y-4">
@@ -255,7 +255,7 @@ export default function Projects() {
 
               {/* Hover Glow Effect */}
               <div
-                className={`absolute inset-0 bg-gradient-to-r from-violet-600/5 to-cyan-600/5 transition-opacity duration-300 pointer-events-none ${
+                className={`absolute inset-0 bg-linear-to-r from-violet-600/5 to-cyan-600/5 transition-opacity duration-300 pointer-events-none ${
                   hoveredProject === project.id ? "opacity-100" : "opacity-0"
                 }`}
               />

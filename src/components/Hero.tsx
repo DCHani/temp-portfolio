@@ -120,7 +120,7 @@ export default function Hero() {
         <div className="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#projects"
-            className="group px-8 py-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold hover:opacity-90 transition-all duration-300 glow flex items-center gap-2"
+            className="group px-8 py-4 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-semibold hover:opacity-90 transition-all duration-300 glow flex items-center gap-2"
           >
             View My Work
             <svg
