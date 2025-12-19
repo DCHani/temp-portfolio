@@ -90,8 +90,8 @@ export default function About() {
           <div className="about-visual relative">
             <div className="relative w-full aspect-square max-w-md mx-auto">
               {/* Decorative Elements */}
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-600/20 to-cyan-600/20 rounded-3xl rotate-6 blur-xl" />
-              <div className="absolute inset-4 bg-gradient-to-br from-violet-600/30 to-cyan-600/30 rounded-3xl -rotate-6" />
+              <div className="absolute inset-0 bg-linear-to-br from-violet-600/20 to-cyan-600/20 rounded-3xl rotate-6 blur-xl" />
+              <div className="absolute inset-4 bg-linear-to-br from-violet-600/30 to-cyan-600/30 rounded-3xl -rotate-6" />
 
               {/* Main Card */}
               <div className="relative gradient-border p-8 h-full flex items-center justify-center">
@@ -110,16 +110,16 @@ export default function About() {
                         {"\n"}
                         {"  "}
                         <span className="text-gray-400">name:</span>{" "}
-                        <span className="text-green-400">&quot;Your Name&quot;</span>,{"\n"}
+                        <span className="text-green-400">&quot;Azzeddine Hani Benchalel&quot;</span>,{"\n"}
                         {"  "}
-                        <span className="text-gray-400">role:</span>{" "}
-                        <span className="text-green-400">&quot;Full Stack Dev&quot;</span>,{"\n"}
+                        <span className="text-gray-400">roles:</span>{" "}
+                        <span className="text-green-400">{"["}&quot;Full Stack Dev&quot;,&quot;ML Engineer&quot;{"]"}</span>,{"\n"}
                         {"  "}
                         <span className="text-gray-400">passion:</span>{" "}
-                        <span className="text-green-400">&quot;Building Cool Stuff&quot;</span>,{"\n"}
+                        <span className="text-green-400">{"["}&quot;Building cool stuff&quot;,&quot;Sports&quot;{"]"}</span>,{"\n"}
                         {"  "}
                         <span className="text-gray-400">coffee:</span>{" "}
-                        <span className="text-yellow-400">true</span>,{"\n"}
+                        <span className="text-red-400">false</span>,{"\n"}
                         {"}"};
                       </code>
                     </pre>

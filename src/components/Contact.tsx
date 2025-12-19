@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { platform } from "os";
+import { link } from "fs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -141,8 +143,8 @@ export default function Contact() {
                     </svg>
                   ),
                   title: "Email",
-                  value: "your@email.com",
-                  href: "mailto:your@email.com",
+                  value: "azzeddinehanibenchalel@gmail.com",
+                  href: "mailto:azzeddinehanibenchalel@gmail.com",
                 },
                 {
                   icon: (
@@ -167,8 +169,8 @@ export default function Contact() {
                     </svg>
                   ),
                   title: "Location",
-                  value: "Your City, Country",
-                  href: "#",
+                  value: "Constantine,Algeria",
+                  
                 },
                 {
                   icon: (
@@ -181,8 +183,8 @@ export default function Contact() {
                     </svg>
                   ),
                   title: "GitHub",
-                  value: "github.com/yourusername",
-                  href: "https://github.com",
+                  value: "github.com/DCHani",
+                  href: "https://github.com/DCHani",
                 },
               ].map((contact, index) => (
                 <a
@@ -190,7 +192,7 @@ export default function Contact() {
                   href={contact.href}
                   className="flex items-center gap-4 p-4 rounded-xl bg-violet-500/5 border border-violet-500/10 hover:border-violet-500/30 hover:bg-violet-500/10 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-600 flex items-center justify-center text-white group-hover:glow transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-linear-to-br from-violet-600 to-cyan-600 flex items-center justify-center text-white group-hover:glow transition-all">
                     {contact.icon}
                   </div>
                   <div>
@@ -207,13 +209,13 @@ export default function Contact() {
                 Follow Me
               </h4>
               <div className="flex gap-4">
-                {["GitHub", "LinkedIn", "Twitter"].map((platform) => (
+                {[{platform:"GitHub", link:"https://github.com/DCHani"}, {platform:"LinkedIn", link:"https://www.linkedin.com/in/azzeddine-hani-benchalel-2a2a45317/"}].map((context) => (
                   <a
-                    key={platform}
-                    href="#"
+                    key={context.platform}
+                    href={context.link}
                     className="px-4 py-2 rounded-full bg-violet-500/10 text-gray-400 hover:text-white hover:bg-violet-500/20 border border-violet-500/20 transition-all duration-300"
                   >
-                    {platform}
+                    {context.platform}
                   </a>
                 ))}
               </div>

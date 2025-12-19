@@ -17,6 +17,7 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       
       tl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
+        .from(".hero-profile", { opacity: 0, scale: 0.8, duration: 0.8 }, "-=0.4")
         .from(".hero-title", { opacity: 0, y: 30, duration: 0.8 }, "-=0.3")
         .from(".hero-role", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4")
         .from(".hero-description", { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
@@ -71,18 +72,32 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         {/* Greeting */}
         <div className="hero-badge mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 backdrop-blur-sm">
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-sm text-gray-300">Available for opportunities</span>
         </div>
 
+        {/* Profile Picture */}
+        <div className="hero-profile mb-6">
+          <div className="relative inline-block">
+            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-violet-500/30 glow mx-auto">
+              <img
+                src="/images/profile.jpg"
+                alt="Azzeddine Hani Benchalel"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-600/20 to-cyan-600/20 pointer-events-none" />
+          </div>
+        </div>
+
         {/* Main Heading */}
         <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
           <span className="text-gray-300">Hello, I&apos;m</span>
           <br />
-          <span className="gradient-text glow-text">Your Name</span>
+          <span className="gradient-text glow-text">Azzeddine Hani Benchalel</span>
         </h1>
 
         {/* Typewriter Role */}
