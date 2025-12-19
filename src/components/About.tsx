@@ -171,7 +171,8 @@ export default function About() {
             {/* Resume Button */}
             <div className="pt-4">
               <a
-                href="#"
+                href="/Azzeddine Hani Benchalel.pdf"
+                download="Azzeddine_Hani_Benchalel_Resume.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold hover:opacity-90 transition-all duration-300 glow"
               >
                 <svg

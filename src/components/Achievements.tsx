@@ -8,39 +8,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const achievements = [
   {
-    title: "Top 15",
-    subtitle: "Hackathon Finalist",
-    description: "National level hackathon among top teams",
-    icon: "🏆",
-    highlight: true,
-  },
-  {
-    title: "Top 50",
-    subtitle: "Coding Competition",
-    description: "Ranked among 2500+ participants",
-    icon: "🥇",
+    title: "🎓",
+    subtitle: "University Diploma",
+    description: "Bachelor in Computer Science - Masters in Data Science and AI",
+    icon: "📚",
     highlight: false,
   },
   {
-    title: "1000+",
-    subtitle: "GitHub Stars",
-    description: "Open source contributions recognized",
-    icon: "⭐",
+    title: "3",
+    subtitle: "Languages",
+    description: "Arabic, French & English fluent",
+    icon: "🌍",
+    highlight: false,
+  },
+  {
+    title: "AI/ML",
+    subtitle: "Specialization",
+    description: "TensorFlow, PyTorch, Data Science",
+    icon: "🤖",
     highlight: true,
   },
   {
-    title: "500+",
-    subtitle: "Community Members",
-    description: "Founded a tech community",
-    icon: "👥",
-    highlight: false,
+    title: "Full Stack",
+    subtitle: "Developer",
+    description: "React, Next.js, Node.js, FastAPI",
+    icon: "💻",
+    highlight: true,
   },
 ];
 
 const certifications = [
-  { name: "AWS Cloud Practitioner", issuer: "Amazon Web Services" },
-  { name: "React Developer", issuer: "Meta" },
-  { name: "Full Stack Development", issuer: "Udemy" },
+  { name: "Machine Learning & AI", issuer: "TensorFlow / PyTorch" },
+  { name: "Full Stack Web Development", issuer: "React, Next.js, Gsap" },
+  { name: "Backend Development", issuer: "Django, Express.js, MongoDB" },
 ];
 
 export default function Achievements() {
@@ -117,7 +117,7 @@ export default function Achievements() {
             <span className="gradient-text">Achievements & Impact</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Hackathons, community building, and real-world impact through tech
+            Challenges surpassed, and real-world impact through tech
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export default function Achievements() {
               {/* Decorative corner */}
               {achievement.highlight && (
                 <div className="absolute -top-1 -right-1 w-16 h-16 overflow-hidden">
-                  <div className="absolute top-4 -right-4 w-20 h-6 bg-gradient-to-r from-violet-600 to-cyan-600 transform rotate-45 text-xs font-bold text-white flex items-center justify-center">
+                  <div className="absolute top-4 -right-4 w-20 h-6 bg-linear-to-r from-violet-600 to-cyan-600 transform rotate-45 text-xs font-bold text-white flex items-center justify-center">
                     TOP
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function Achievements() {
                 key={index}
                 className="flex items-center gap-4 p-4 rounded-xl bg-violet-500/5 border border-violet-500/10 hover:border-violet-500/30 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-600 flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-violet-600 to-cyan-600 flex items-center justify-center text-white font-bold">
                   {index + 1}
                 </div>
                 <div>
@@ -188,14 +188,14 @@ export default function Achievements() {
           </h3>
           <div className="relative">
             {/* Vertical Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-600 via-cyan-500 to-violet-600 hidden md:block" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-violet-600 via-cyan-500 to-violet-600 hidden md:block" />
 
             {/* Timeline Items */}
             {[
-              { year: "2024", title: "Senior Developer", desc: "Leading development teams" },
-              { year: "2023", title: "Full Stack Developer", desc: "Building scalable applications" },
-              { year: "2022", title: "Frontend Developer", desc: "Creating beautiful UIs" },
-              { year: "2021", title: "Started Coding", desc: "The beginning of the journey" },
+              { year: "Now", title: "Free Lancing", desc: "Building AI-powered applications" },
+              { year: "2025", title: "Master's Graduation", desc: "Data Science And Artificial Intelligence" },
+              { year: "2023", title: "Bachelor's Graduation", desc: "Computer Science Graduation" },
+              { year: "2020", title: "Started Web Development", desc: "My first ever website" },
             ].map((item, index) => (
               <div
                 key={index}
@@ -219,10 +219,11 @@ export default function Achievements() {
                 </div>
 
                 {/* Center Dot */}
-                <div className="hidden md:flex w-4 h-4 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 glow absolute left-1/2 -translate-x-1/2" />
+                <div className="hidden md:flex w-4 h-4 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 glow absolute left-1/2 -translate-x-1/2" />
 
                 {/* Spacer */}
                 <div className="flex-1 hidden md:block" />
+                
               </div>
             ))}
           </div>

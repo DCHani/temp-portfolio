@@ -8,43 +8,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
   {
-    title: "Programming Languages",
-    icon: "💻",
+    title: "AI & Machine Learning",
+    icon: "🤖",
     skills: [
-      { name: "JavaScript", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "Java", level: 75 },
+      { name: "Python", level: 90 },
+      { name: "TensorFlow", level: 85 },
+      { name: "PyTorch", level: 82 },
+      { name: "Pandas / NumPy", level: 88 },
     ],
   },
   {
     title: "Frontend Development",
     icon: "🎨",
     skills: [
-      { name: "React.js", level: 90 },
+      { name: "React.js", level: 88 },
       { name: "Next.js", level: 85 },
-      { name: "Tailwind CSS", level: 88 },
-      { name: "Vue.js", level: 70 },
+      { name: "Flutter", level: 78 },
+      { name: "Gsap", level: 60 },
     ],
   },
   {
     title: "Backend & Databases",
     icon: "⚙️",
     skills: [
-      { name: "Node.js", level: 85 },
-      { name: "PostgreSQL", level: 80 },
-      { name: "MongoDB", level: 82 },
-      { name: "Firebase", level: 78 },
+      { name: "Node.js / Express.js", level: 85 },
+      { name: "FastAPI", level: 80 },
+      { name: "Django", level: 82 },
+      { name: "MongoDB / Firebase", level: 80 },
     ],
   },
   {
-    title: "Tools & Others",
+    title: "DevOps & Tools",
     icon: "🛠️",
     skills: [
-      { name: "Git & GitHub", level: 90 },
-      { name: "Docker", level: 72 },
-      { name: "AWS", level: 68 },
-      { name: "Figma", level: 75 },
+      { name: "Git & GitHub", level: 88 },
+      { name: "Docker", level: 75 },
+      { name: "CI/CD", level: 69 },
+      { name: "Linux", level: 65 },
     ],
   },
 ];
@@ -80,7 +80,7 @@ function SkillBar({ name, level }: { name: string; level: number }) {
       </div>
       <div className="h-2 bg-violet-500/10 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-violet-600 to-cyan-500 rounded-full transition-all duration-1000 ease-out"
+          className="h-full bg-linear-to-r from-violet-600 to-cyan-500 rounded-full transition-all duration-1000 ease-out"
           style={{ width: `${width}%` }}
         />
       </div>
@@ -133,7 +133,7 @@ export default function Skills() {
   return (
     <section ref={sectionRef} id="skills" className="relative py-24 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-violet-950/10 via-transparent to-violet-950/10" />
+      <div className="absolute inset-0 bg-linear-to-b from-violet-950/10 via-transparent to-violet-950/10" />
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,17 +188,13 @@ export default function Skills() {
           <div className="flex flex-wrap justify-center gap-3">
             {[
               "REST APIs",
-              "GraphQL",
               "Redux",
               "Jest",
-              "Cypress",
               "CI/CD",
               "Linux",
-              "Nginx",
               "WebSockets",
               "Three.js",
               "Framer Motion",
-              "Prisma",
             ].map((skill, index) => (
               <span
                 key={index}
