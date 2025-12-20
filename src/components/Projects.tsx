@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,277 +10,408 @@ const projects = [
   {
     id: 1,
     title: "Construction Company Website",
-    description:
-      "A website for a construction company featuring project showcases, service details, and contact forms, with an aditional admin dashboard for managing content.",
+    description: "A website for a construction company featuring project showcases, service details, and contact forms, with an admin dashboard.",
     image: "/images/projects/project1.png",
-    tags: ["Next.js", "TypeScript", "Gsap", "PostgreSQL", "Tailwind", "Node.js"],
-    category: "WEB APP",
+    tags: ["Next.js", "TypeScript", "GSAP", "PostgreSQL", "Tailwind"],
     demoUrl: "https://nassar-constraction.vercel.app",
-    features: [
-      "User authentication & authorization",
-      "Smoothness integrated using Gsap",
-      "Real-time inventory tracking",
-    ],
+    year: "2025",
+    color: "#8b5cf6",
   },
   {
     id: 2,
-    title: "Real-estate Company Website",
-    description:
-      "a modern website for a real-estate company with property listings, agent profiles, and an admin dashboard for content management.",
+    title: "Real-estate Platform",
+    description: "A modern website for a real-estate company with property listings, agent profiles, and an admin dashboard for content management.",
     image: "/images/projects/project2.png",
-    tags: ["Next.js", "TypeScript", "Gsap", "PostgreSQL", "Tailwind", "Node.js"],
-    category: "WEB APP",
+    tags: ["Next.js", "TypeScript", "GSAP", "PostgreSQL", "Node.js"],
     demoUrl: "https://www.nassargroupllc.com",
-    features: [
-      "Admin dashboard for content management",
-      "Real Time map integration",
-      "Stunning project showcases",
-    ],
+    year: "2025",
+    color: "#06b6d4",
   },
   {
     id: 3,
-    title: "A delivery Company Website",
+    title: "Delivery Tracking System",
     description: "A website for a delivery company featuring real-time tracking and forms to be filled by any type of user.",
     image: "/images/projects/project3.png",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Javascript"],
-    category: "WEB APP",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Maps API"],
     demoUrl: "https://www.areex-delivery.com",
-    features: [
-      "Real-time order tracking",
-      "Forms for different user types",
-      "Multi-language support",
-    ],
+    year: "2025",
+    color: "#10b981",
   },
   {
     id: 4,
-    title: "An Insurance Company website",
+    title: "Insurance Portal",
     description: "A website for an insurance company with policy details, claim forms, and interactive visualizations.",
     image: "/images/projects/project4.png",
-    tags: ["Vue.js", "D3.js", "Python", "FastAPI", "PostgreSQL"],
-    category: "WEB APP",
+    tags: ["Vue.js", "D3.js", "Python", "FastAPI"],
     demoUrl: "https://minarcoins.com",
-    features: [
-      "Interactive data visualizations",
-      "Comprehensive policy details",
-      "User-friendly claim forms",
-    ],
+    year: "2025",
+    color: "#f59e0b",
   },
 ];
 
-const categories = ["All", "WEB APP", "AI / DATA"];
-
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-
-  const filteredProjects =
-    activeCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isInSection, setIsInSection] = useState(false);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(".projects-header",
-        { opacity: 0, y: 40 },
-        {
-          scrollTrigger: {
-            trigger: ".projects-header",
-            start: "top 85%",
-            end: "top 50%",
-            toggleActions: "play none none reverse",
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        }
-      );
+    const section = sectionRef.current;
+    if (!section) return;
 
-      gsap.fromTo(".project-card",
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: {
-            trigger: ".projects-grid",
-            start: "top 85%",
-            end: "top 45%",
-            toggleActions: "play none none reverse",
-          },
-          opacity: 1,
-          y: 0,
-          stagger: 0.15,
-          duration: 0.7,
-          ease: "power3.out",
+    const ctx = gsap.context(() => {
+      // Track when user is in the projects section
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        end: "bottom 20%",
+        onEnter: () => setIsInSection(true),
+        onLeave: () => setIsInSection(false),
+        onEnterBack: () => setIsInSection(true),
+        onLeaveBack: () => setIsInSection(false),
+      });
+
+      const cards = gsap.utils.toArray<HTMLElement>(".project-slide");
+      
+      cards.forEach((card, i) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top top",
+          end: i === cards.length - 1 ? "bottom bottom" : "bottom top",
+          pin: i !== cards.length - 1,
+          pinSpacing: false,
+          onEnter: () => setActiveIndex(i),
+          onEnterBack: () => setActiveIndex(i),
+        });
+
+        // Animate content
+        const content = card.querySelector(".project-content");
+        const image = card.querySelector(".project-image");
+        const tags = card.querySelectorAll(".project-tag");
+
+        if (content) {
+          gsap.fromTo(content,
+            { opacity: 0, y: 80 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                end: "top 20%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
         }
-      );
-    }, sectionRef);
+
+        if (image) {
+          gsap.fromTo(image,
+            { scale: 1.2 },
+            {
+              scale: 1,
+              duration: 1.5,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        if (tags.length) {
+          gsap.fromTo(tags,
+            { opacity: 0, y: 20, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              stagger: 0.05,
+              duration: 0.5,
+              ease: "back.out(1.7)",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 60%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      });
+
+    }, section);
 
     return () => ctx.revert();
-  }, [activeCategory]);
+  }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative py-24 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 grid-bg" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+    <section ref={sectionRef} id="projects" className="relative bg-[#030305]">
+      {/* Section indicator - Left side */}
+      <div className={`fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-4 pointer-events-none transition-all duration-500 ${isInSection ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
+        <span className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
+          02
+        </span>
+        <div className="w-px h-16 bg-gradient-to-b from-zinc-700 to-transparent" />
+        <span className="text-xs text-zinc-600 uppercase tracking-widest [writing-mode:vertical-lr]">
+          Projects
+        </span>
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="projects-header text-center mb-16">
-          <span className="inline-block px-4 py-1 rounded-full text-sm font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
-            BUILT, NOT IMAGINED
+      {/* Progress indicator - Right side */}
+      <div className={`fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-3 transition-all duration-500 ${isInSection ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"}`}>
+        {projects.map((project, i) => (
+          <button
+            key={i}
+            className={`group relative transition-all duration-500 ${
+              i === activeIndex ? "scale-100" : "scale-75 opacity-50"
+            }`}
+            onClick={() => {
+              const element = document.querySelectorAll(".project-slide")[i];
+              element?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <div 
+              className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+                i === activeIndex 
+                  ? "scale-125" 
+                  : "border-zinc-700 hover:border-zinc-500"
+              }`}
+              style={{
+                borderColor: i === activeIndex ? project.color : undefined,
+                background: i === activeIndex ? project.color : "transparent",
+                boxShadow: i === activeIndex ? `0 0 20px ${project.color}60` : "none",
+              }}
+            />
+            {/* Tooltip */}
+            <span className={`absolute right-8 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-zinc-900 text-xs text-zinc-300 whitespace-nowrap border border-zinc-800 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`}>
+              {project.title.split(" ").slice(0, 2).join(" ")}
+            </span>
+          </button>
+        ))}
+        <div className="mt-4 text-center">
+          <span className="text-xs font-mono text-zinc-600">
+            {String(activeIndex + 1).padStart(2, "0")}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="gradient-text">Featured Projects</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Every card below maps to a hosted running website. Explore my work showcasing
-            innovative solutions and clean code.
-          </p>
+          <div className="w-4 h-px bg-zinc-700 mx-auto my-1" />
+          <span className="text-xs font-mono text-zinc-700">
+            {String(projects.length).padStart(2, "0")}
+          </span>
         </div>
+      </div>
 
-        {/* Category Filter */}
-        <div className="flex justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category
-                ? "bg-linear-to-r from-violet-600 to-cyan-600 text-white glow"
-                : "bg-violet-500/10 text-gray-400 hover:text-white hover:bg-violet-500/20 border border-violet-500/20"
-                }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+      {/* Project slides */}
+      {projects.map((project, index) => (
+        <div
+          key={project.id}
+          className="project-slide relative h-screen w-full"
+        >
+          {/* Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Image */}
+            <div className="project-image absolute inset-0">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Overlays */}
+            <div className="absolute inset-0 bg-[#030305]/75" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030305] via-[#030305]/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030305] via-[#030305]/70 to-transparent" />
+            
+            {/* Accent glow */}
+            <div 
+              className="absolute bottom-0 left-0 w-1/2 h-1/2 blur-[150px] opacity-30"
+              style={{ background: project.color }}
+            />
+            <div 
+              className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
+              style={{ background: project.color }}
+            />
+          </div>
 
-        {/* Projects Grid */}
-        <div className="projects-grid grid md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="project-card group relative gradient-border overflow-hidden"
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-            >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-[#0d0d15] via-[#0d0d15]/50 to-transparent" />
-              </div>
-
-              <div className="p-6 space-y-4">
-                {/* Header */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-violet-500/20 text-violet-400 mb-3">
-                      {project.category}
-                    </span>
-                    <h3 className="text-xl font-bold text-white group-hover:text-violet-400 transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                  <a
-                    href={project.demoUrl}
-                    className="p-2 rounded-lg bg-violet-500/10 text-gray-400 hover:text-violet-400 hover:bg-violet-500/20 transition-all"
-                    title="Live Demo"
+          {/* Content */}
+          <div className="project-content relative z-10 h-full flex items-center">
+            <div className="max-w-7xl mx-auto px-6 lg:px-20 w-full">
+              <div className="max-w-3xl">
+                {/* Project number & year */}
+                <div className="flex items-center gap-4 mb-8">
+                  <div 
+                    className="flex items-center justify-center w-16 h-16 rounded-2xl border-2"
+                    style={{ 
+                      borderColor: `${project.color}50`,
+                      background: `${project.color}10`,
+                    }}
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                    <span 
+                      className="text-2xl font-black"
+                      style={{ color: project.color }}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-zinc-500 uppercase tracking-widest">Featured Project</span>
+                    <span className="text-sm text-zinc-400">{project.year}</span>
+                  </div>
                 </div>
 
+                {/* Title */}
+                <h3 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.05]">
+                  {project.title.split(" ").map((word, i) => (
+                    <span key={i} className="inline-block mr-4">
+                      {i === 0 ? (
+                        <span style={{ color: project.color }}>{word}</span>
+                      ) : (
+                        word
+                      )}
+                    </span>
+                  ))}
+                </h3>
+
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-xl lg:text-2xl text-zinc-400 mb-10 leading-relaxed max-w-2xl">
                   {project.description}
                 </p>
 
-                {/* Features */}
-                <ul className="space-y-2">
-                  {project.features.map((feature, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center gap-2 text-sm text-gray-400"
-                    >
-                      <svg
-                        className="w-4 h-4 text-cyan-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-4">
-                  {project.tags.map((tag, index) => (
+                <div className="flex flex-wrap gap-3 mb-12">
+                  {project.tags.map((tag, i) => (
                     <span
-                      key={index}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-[#0d0d15] text-gray-400 border border-violet-500/10"
+                      key={i}
+                      className="project-tag px-5 py-2.5 rounded-full text-sm font-medium bg-zinc-800/60 text-zinc-300 border border-zinc-700/50 backdrop-blur-sm hover:border-zinc-600 transition-colors"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              {/* Hover Glow Effect */}
-              <div
-                className={`absolute inset-0 bg-linear-to-r from-violet-600/5 to-cyan-600/5 transition-opacity duration-300 pointer-events-none ${hoveredProject === project.id ? "opacity-100" : "opacity-0"
-                  }`}
-              />
+                {/* CTA */}
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-5"
+                >
+                  <span 
+                    className="px-10 py-5 rounded-full font-semibold text-lg text-white transition-all duration-300 hover:scale-105"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${project.color}, ${project.color}cc)`,
+                      boxShadow: `0 10px 40px ${project.color}40`,
+                    }}
+                  >
+                    View Live Site
+                  </span>
+                  <div 
+                    className="w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    style={{ 
+                      borderColor: `${project.color}50`,
+                      background: `${project.color}10`,
+                    }}
+                  >
+                    <svg 
+                      className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
+                      style={{ color: project.color }}
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                  </div>
+                </a>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Large background number */}
+          <div className="absolute bottom-0 right-0 lg:bottom-10 lg:right-10 pointer-events-none overflow-hidden">
+            <span 
+              className="text-[25vw] lg:text-[20vw] font-black leading-none opacity-[0.03]"
+              style={{ color: project.color }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
+
+          {/* Decorative lines */}
+          <div 
+            className="absolute top-20 right-20 w-32 h-32 border-t-2 border-r-2 rounded-tr-3xl opacity-20 hidden lg:block"
+            style={{ borderColor: project.color }}
+          />
+          <div 
+            className="absolute bottom-20 left-20 w-32 h-32 border-b-2 border-l-2 rounded-bl-3xl opacity-20 hidden lg:block"
+            style={{ borderColor: project.color }}
+          />
+
+          {/* Scroll indicator - first slide only */}
+          {index === 0 && (
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+              <span className="text-xs text-zinc-600 uppercase tracking-widest">Scroll to explore</span>
+              <div className="w-6 h-10 rounded-full border-2 border-zinc-700 flex items-start justify-center p-2">
+                <div className="w-1 h-2 rounded-full bg-zinc-500 animate-bounce" />
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+
+      {/* Final CTA section */}
+      <div className="relative h-screen w-full flex items-center justify-center bg-[#030305] overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]" />
         </div>
 
-        {/* View All Button */}
-        {/* <div className="text-center mt-12">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-violet-500/50 text-white font-semibold hover:bg-violet-500/10 transition-all duration-300"
-          >
-            View All Projects
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <div className="relative z-10 text-center max-w-3xl px-6">
+          {/* Icon */}
+          <div className="relative w-28 h-28 mx-auto mb-10">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 animate-pulse" />
+            <div className="absolute inset-2 rounded-full bg-zinc-900 flex items-center justify-center border border-zinc-800">
+              <svg className="w-12 h-12 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Text */}
+          <h4 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+            Want to see more?
+          </h4>
+          <p className="text-xl lg:text-2xl text-zinc-500 mb-12 max-w-xl mx-auto">
+            Let&apos;s collaborate and build something extraordinary together.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="#contact"
+              className="group px-10 py-5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
-        </div> */}
+              <span className="flex items-center gap-3">
+                Start a Project
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </a>
+            <a 
+              href="https://github.com/DCHani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-5 rounded-full bg-zinc-800/50 border border-zinc-700 text-zinc-300 font-semibold text-lg hover:bg-zinc-800 hover:border-zinc-600 transition-all"
+            >
+              View GitHub
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
