@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from "@emailjs/browser";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,8 +63,15 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // EmailJS credentials
+  const EMAILJS_SERVICE_ID = "service_tudeuun";
+  const EMAILJS_TEMPLATE_ID = "template_d2tzqab";
+  const EMAILJS_PUBLIC_KEY = "7aQya8D2MlYhTRuAP";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -117,10 +125,38 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    alert("Message sent! (This is a demo)");
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setSubmitStatus("idle");
+
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.status === 200) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      }
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setSubmitStatus("error");
+      
+      // Reset error message after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -370,6 +406,29 @@ export default function Contact() {
                     )}
                   </span>
                 </button>
+
+                {/* Success/Error Messages */}
+                {submitStatus === "success" && (
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+                    <svg className="w-6 h-6 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-emerald-400 text-sm font-medium">
+                      Message sent successfully! I&apos;ll get back to you soon.
+                    </p>
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+                    <svg className="w-6 h-6 text-red-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-red-400 text-sm font-medium">
+                      Something went wrong. Please try again or email me directly.
+                    </p>
+                  </div>
+                )}
               </form>
 
               {/* Decorative corner */}
