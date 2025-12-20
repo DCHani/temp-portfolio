@@ -137,7 +137,7 @@ export default function Achievements() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".expertise-section",
-            start: "top 70%",
+            start: "top 30%",
             toggleActions: "play none none reverse",
           },
         }
@@ -193,9 +193,9 @@ export default function Achievements() {
         />
       </div>
 
-      {/* Section indicator */}
-      <div className="absolute top-8 left-8 z-20 flex items-center gap-4">
-        <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
+      {/* Section indicator - hidden on mobile */}
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 hidden sm:flex items-center gap-4">
+        <span className="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
           04
         </span>
         <div className="flex flex-col">
@@ -205,9 +205,9 @@ export default function Achievements() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 h-full flex items-center py-16 sm:py-0">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
 
             {/* Left - Stats & Info */}
             <div className="space-y-10">
@@ -217,10 +217,10 @@ export default function Achievements() {
                   <div className="h-px w-12 bg-gradient-to-r from-violet-500 to-transparent" />
                   <span className="text-sm text-violet-400 uppercase tracking-widest">Track Record</span>
                 </div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Achievements & Impact
                 </h2>
-                <p className="text-zinc-400 text-lg max-w-md">
+                <p className="text-zinc-400 text-sm sm:text-lg max-w-md">
                   A journey of continuous growth, learning, and delivering value through technology.
                 </p>
               </div>
@@ -230,19 +230,19 @@ export default function Achievements() {
                 {stats.map((stat, i) => (
                   <div
                     key={stat.label}
-                    className="stat-card group relative p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300"
+                    className="stat-card group relative p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300"
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="text-3xl">{stat.icon}</span>
+                    <div className="flex items-start justify-between mb-2 sm:mb-3">
+                      <span className="text-2xl sm:text-3xl">{stat.icon}</span>
                       <div
                         className="w-2 h-2 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
                         style={{ background: milestones[i % milestones.length].color }}
                       />
                     </div>
-                    <div className="text-3xl lg:text-4xl font-bold text-white mb-1">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
                       {counts[i]}{stat.suffix}
                     </div>
-                    <div className="text-sm text-zinc-500">{stat.label}</div>
+                    <div className="text-xs sm:text-sm text-zinc-500">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -270,8 +270,8 @@ export default function Achievements() {
               </div>
             </div>
 
-            {/* Right - Timeline */}
-            <div className="relative">
+            {/* Right - Timeline - hidden on mobile */}
+            <div className="relative hidden lg:block">
               {/* Vertical line */}
               <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-700 to-transparent" />
 
@@ -343,8 +343,8 @@ export default function Achievements() {
         </div>
       </div>
 
-      {/* Bottom scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 text-zinc-600">
+      {/* Bottom scroll indicator - hidden on mobile */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-4 text-zinc-600">
         <div className="flex gap-1.5">
           {milestones.map((_, i) => (
             <div

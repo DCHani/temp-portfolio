@@ -177,7 +177,7 @@ export default function Skills() {
       </div>
 
       {/* Section indicator */}
-      <div className="absolute top-8 left-8 z-20 flex items-center gap-4">
+      <div className="absolute top-8 left-8 z-20 hidden md:flex items-center gap-4">
         <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
           03
         </span>
@@ -189,11 +189,11 @@ export default function Skills() {
 
       {/* Main content */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             
             {/* Left side - Circular visualization */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative hidden lg:flex items-center justify-center">
               {/* Central ring */}
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 {/* Outer rotating ring */}
@@ -280,20 +280,20 @@ export default function Skills() {
 
             {/* Right side - Expertise cards */}
             <div className="space-y-6">
-              <div className="mb-8">
-                <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
                   My Tech Stack
                 </h2>
-                <p className="text-zinc-400 text-lg max-w-md">
+                <p className="text-zinc-400 text-base sm:text-lg max-w-md">
                   Years of experience crafting digital solutions with cutting-edge technologies
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {expertise.map((item, i) => (
                   <div
                     key={item.title}
-                    className="expertise-card group relative p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300 hover:bg-zinc-800/30"
+                    className="expertise-card group relative p-4 sm:p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300 hover:bg-zinc-800/30"
                   >
                     {/* Icon */}
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 flex items-center justify-center text-violet-400 mb-4 group-hover:scale-110 transition-transform">
@@ -332,20 +332,20 @@ export default function Skills() {
               </div>
 
               {/* Stats row */}
-              <div className="flex items-center gap-8 pt-6 border-t border-zinc-800/50">
-                <div>
-                  <span className="text-3xl font-bold text-white">20+</span>
-                  <span className="block text-sm text-zinc-500">Technologies</span>
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-8 pt-4 sm:pt-6 border-t border-zinc-800/50">
+                <div className="text-center sm:text-left">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">15+</span>
+                  <span className="block text-xs sm:text-sm text-zinc-500">Technologies</span>
                 </div>
-                <div className="w-px h-10 bg-zinc-800" />
-                <div>
-                  <span className="text-3xl font-bold text-white">3+</span>
-                  <span className="block text-sm text-zinc-500">Years Exp.</span>
+                <div className="w-px h-8 sm:h-10 bg-zinc-800 hidden sm:block" />
+                <div className="text-center sm:text-left">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">5+</span>
+                  <span className="block text-xs sm:text-sm text-zinc-500">Years Exp.</span>
                 </div>
-                <div className="w-px h-10 bg-zinc-800" />
-                <div>
-                  <span className="text-3xl font-bold text-white">25+</span>
-                  <span className="block text-sm text-zinc-500">Projects</span>
+                <div className="w-px h-8 sm:h-10 bg-zinc-800 hidden sm:block" />
+                <div className="text-center sm:text-left">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">20+</span>
+                  <span className="block text-xs sm:text-sm text-zinc-500">Projects</span>
                 </div>
               </div>
             </div>
@@ -354,7 +354,7 @@ export default function Skills() {
       </div>
 
       {/* Scroll progress indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 text-zinc-600">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-3 text-zinc-600">
         <div className="flex gap-1.5">
           {skills.map((_, i) => (
             <div

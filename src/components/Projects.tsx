@@ -263,7 +263,7 @@ export default function Projects() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.05]">
+                <h3 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-[1.05]">
                   {project.title.split(" ").map((word, i) => (
                     <span key={i} className="inline-block mr-4">
                       {i === 0 ? (
@@ -276,16 +276,16 @@ export default function Projects() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-xl lg:text-2xl text-zinc-400 mb-10 leading-relaxed max-w-2xl">
+                <p className="text-base sm:text-xl lg:text-2xl text-zinc-400 mb-6 sm:mb-10 leading-relaxed max-w-2xl">
                   {project.description}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-3 mb-12">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-12">
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="project-tag px-5 py-2.5 rounded-full text-sm font-medium bg-zinc-800/60 text-zinc-300 border border-zinc-700/50 backdrop-blur-sm hover:border-zinc-600 transition-colors"
+                      className="project-tag px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium bg-zinc-800/60 text-zinc-300 border border-zinc-700/50 backdrop-blur-sm hover:border-zinc-600 transition-colors"
                     >
                       {tag}
                     </span>
@@ -297,10 +297,10 @@ export default function Projects() {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-5"
+                  className="group inline-flex items-center gap-3 sm:gap-5"
                 >
                   <span 
-                    className="px-10 py-5 rounded-full font-semibold text-lg text-white transition-all duration-300 hover:scale-105"
+                    className="px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg text-white transition-all duration-300 hover:scale-105"
                     style={{ 
                       background: `linear-gradient(135deg, ${project.color}, ${project.color}cc)`,
                       boxShadow: `0 10px 40px ${project.color}40`,
@@ -309,7 +309,7 @@ export default function Projects() {
                     View Live Site
                   </span>
                   <div 
-                    className="w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110 hidden sm:flex"
                     style={{ 
                       borderColor: `${project.color}50`,
                       background: `${project.color}10`,
@@ -382,18 +382,18 @@ export default function Projects() {
           </div>
 
           {/* Text */}
-          <h4 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+          <h4 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
             Want to see more?
           </h4>
-          <p className="text-xl lg:text-2xl text-zinc-500 mb-12 max-w-xl mx-auto">
+          <p className="text-base sm:text-xl lg:text-2xl text-zinc-500 mb-8 sm:mb-12 max-w-xl mx-auto">
             Let&apos;s collaborate and build something extraordinary together.
           </p>
 
           {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a 
               href="#contact"
-              className="group px-10 py-5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105"
+              className="group px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold text-base sm:text-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105"
             >
               <span className="flex items-center gap-3">
                 Start a Project
@@ -406,7 +406,7 @@ export default function Projects() {
               href="https://github.com/DCHani"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-5 rounded-full bg-zinc-800/50 border border-zinc-700 text-zinc-300 font-semibold text-lg hover:bg-zinc-800 hover:border-zinc-600 transition-all"
+              className="px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-zinc-800/50 border border-zinc-700 text-zinc-300 font-semibold text-base sm:text-lg hover:bg-zinc-800 hover:border-zinc-600 transition-all"
             >
               View GitHub
             </a>

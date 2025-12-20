@@ -250,8 +250,8 @@ export default function About() {
       <div className="absolute bottom-32 left-[20%] w-2 h-2 rounded-full bg-fuchsia-500 float-slow opacity-40" />
       <div className="absolute top-1/2 right-[8%] w-4 h-4 rounded-full bg-violet-400/30 float-fast" />
 
-      {/* Progress indicator */}
-      <div className="fixed top-1/2 right-6 -translate-y-1/2 z-50 flex flex-col items-center gap-1">
+      {/* Progress indicator - hidden on mobile */}
+      <div className="fixed top-1/2 right-6 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-1">
         <div className="h-32 w-1 rounded-full bg-zinc-800 overflow-hidden">
           <div 
             className="w-full bg-gradient-to-b from-violet-500 via-fuchsia-500 to-cyan-500 transition-all duration-300 rounded-full"
@@ -261,8 +261,8 @@ export default function About() {
         <span className="text-[10px] text-zinc-600 mt-2">{activePanel + 1}/4</span>
       </div>
 
-      {/* Panel navigation dots */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6">
+      {/* Panel navigation dots - hidden on mobile */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-6">
         {["Intro", "Stats", "Skills", "Connect"].map((label, i) => (
           <div key={i} className="group flex items-center gap-3 cursor-pointer">
             <div className="relative">
@@ -297,17 +297,17 @@ export default function About() {
               {/* Background glow */}
               <div className="hero-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-600/20 blur-[100px]" />
               
-              {/* Floating decorative elements */}
-              <div className="floating-element absolute -top-20 -left-20 w-16 h-16 rounded-2xl border border-violet-500/30 rotate-12 flex items-center justify-center text-2xl">
+              {/* Floating decorative elements - hidden on small mobile */}
+              <div className="floating-element absolute -top-16 -left-8 sm:-top-20 sm:-left-20 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl border border-violet-500/30 rotate-12 hidden sm:flex items-center justify-center text-xl sm:text-2xl">
                 💻
               </div>
-              <div className="floating-element absolute -top-10 -right-16 w-14 h-14 rounded-full border border-cyan-500/30 flex items-center justify-center text-xl">
+              <div className="floating-element absolute -top-8 -right-8 sm:-top-10 sm:-right-16 w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-cyan-500/30 hidden sm:flex items-center justify-center text-lg sm:text-xl">
                 ⚡
               </div>
-              <div className="floating-element absolute -bottom-16 -left-10 w-12 h-12 rounded-lg border border-fuchsia-500/30 -rotate-12 flex items-center justify-center text-lg">
+              <div className="floating-element absolute -bottom-12 -left-4 sm:-bottom-16 sm:-left-10 w-10 h-10 sm:w-12 sm:h-12 rounded-lg border border-fuchsia-500/30 -rotate-12 hidden sm:flex items-center justify-center text-base sm:text-lg">
                 🎯
               </div>
-              <div className="floating-element absolute -bottom-12 -right-20 w-16 h-16 rounded-2xl border border-emerald-500/30 rotate-6 flex items-center justify-center text-2xl">
+              <div className="floating-element absolute -bottom-10 -right-8 sm:-bottom-12 sm:-right-20 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl border border-emerald-500/30 rotate-6 hidden sm:flex items-center justify-center text-xl sm:text-2xl">
                 🚀
               </div>
 
@@ -358,7 +358,7 @@ export default function About() {
                     className="stat-card group relative"
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    <div className="relative p-8 rounded-3xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/50 border border-zinc-800/50 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-violet-500/50 hover:scale-105">
+                    <div className="relative p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/50 border border-zinc-800/50 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-violet-500/50 hover:scale-105">
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-cyan-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
@@ -366,7 +366,7 @@ export default function About() {
                       <div className="text-4xl mb-4">{stat.icon}</div>
                       
                       {/* Counter */}
-                      <div className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+                      <div className="text-3xl sm:text-4xl lg:text-6xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
                         {counters[index]}{stat.suffix}
                       </div>
                       
@@ -439,11 +439,11 @@ export default function About() {
           {/* Panel 4: CTA */}
           <div className="panel-4 absolute inset-0 flex items-center justify-center opacity-0">
             <div className="relative text-center">
-              {/* Orbit rings */}
+              {/* Orbit rings - scaled for mobile */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="orbit-ring absolute w-[300px] h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-500/20 rotate-slow" />
-                <div className="orbit-ring absolute w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-fuchsia-500/15" style={{ animation: "spin 25s linear infinite reverse" }} />
-                <div className="orbit-ring absolute w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/10 rotate-slow" />
+                <div className="orbit-ring absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-500/20 rotate-slow" />
+                <div className="orbit-ring absolute w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-fuchsia-500/15" style={{ animation: "spin 25s linear infinite reverse" }} />
+                <div className="orbit-ring absolute w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/10 rotate-slow" />
               </div>
 
               {/* Content */}

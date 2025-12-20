@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Futuristic Developer",
+  title: "Azzeddine Hani Benchalel | Futuristic Developer",
   description: "A futuristic portfolio showcasing my work and skills",
 };
 

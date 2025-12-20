@@ -192,9 +192,9 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Section indicator */}
-      <div className="absolute top-8 left-8 z-20 flex items-center gap-4">
-        <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
+      {/* Section indicator - hidden on mobile */}
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 hidden sm:flex items-center gap-4">
+        <span className="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
           05
         </span>
         <div className="flex flex-col">
@@ -204,8 +204,8 @@ export default function Contact() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-16">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-8 sm:pt-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
           
           {/* Left side - Info */}
           <div className="contact-left space-y-10">
@@ -215,14 +215,14 @@ export default function Contact() {
                 <div className="h-px w-12 bg-gradient-to-r from-violet-500 to-transparent" />
                 <span className="text-sm text-violet-400 uppercase tracking-widest">Get In Touch</span>
               </div>
-              <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
                 Let&apos;s Work
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
                   Together
                 </span>
               </h2>
-              <p className="text-zinc-400 text-lg max-w-md leading-relaxed">
+              <p className="text-zinc-400 text-base sm:text-lg max-w-md leading-relaxed">
                 Have a project in mind? I&apos;d love to hear about it. 
                 Let&apos;s discuss how we can bring your ideas to life.
               </p>
@@ -234,13 +234,13 @@ export default function Contact() {
                 <a
                   key={item.label}
                   href={item.href || undefined}
-                  className={`group relative flex items-center gap-5 p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/30 ${
+                  className={`group relative flex items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-900/50 border border-zinc-800/50 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/30 ${
                     item.href ? "cursor-pointer" : "cursor-default"
                   }`}
                 >
                   {/* Icon */}
                   <div 
-                    className="w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                     style={{
                       background: `linear-gradient(135deg, ${item.color}20, ${item.color}05)`,
                       border: `1px solid ${item.color}30`,
@@ -290,7 +290,7 @@ export default function Contact() {
 
           {/* Right side - Form */}
           <div className="contact-right">
-            <div className="relative p-8 lg:p-10 rounded-3xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm">
+            <div className="relative p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm">
               {/* Form header */}
               <div className="mb-8">
                 <h3 className="text-2xl font-bold text-white mb-2">Send a Message</h3>
@@ -443,9 +443,9 @@ export default function Contact() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 text-center">
+        <div className="mt-12 sm:mt-20 text-center">
           <p className="text-zinc-600 text-sm mb-4">Prefer a quick chat?</p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <a 
               href="https://github.com/DCHani"
               target="_blank"
