@@ -44,28 +44,28 @@ export default function Footer() {
       {/* Gradient Line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="text-2xl font-bold gradient-text">
-              {"<Portfolio />"}
+          <div className="space-y-3 sm:space-y-4 sm:col-span-2 md:col-span-1">
+            <Link href="/" className="text-xl sm:text-2xl font-bold gradient-text">
+              {"<Hani />"}
             </Link>
-            <p className="text-gray-400 text-sm max-w-xs">
+            <p className="text-gray-400 text-xs sm:text-sm max-w-xs">
               Building the future, one line of code at a time. Passionate about
               creating innovative digital experiences.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Quick Links</h3>
-            <ul className="space-y-2">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold text-white">Quick Links</h3>
+            <ul className="space-y-1.5 sm:space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-violet-400 transition-colors duration-300 text-sm"
+                    className="text-gray-400 hover:text-violet-400 transition-colors duration-300 text-xs sm:text-sm"
                   >
                     {link.label}
                   </Link>
@@ -75,16 +75,16 @@ export default function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Connect</h3>
-            <div className="flex space-x-4">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-base sm:text-lg font-semibold text-white">Connect</h3>
+            <div className="flex space-x-3 sm:space-x-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-violet-500/10 text-gray-400 hover:text-violet-400 hover:bg-violet-500/20 transition-all duration-300"
+                  className="p-1.5 sm:p-2 rounded-lg bg-violet-500/10 text-gray-400 hover:text-violet-400 hover:bg-violet-500/20 transition-all duration-300"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -95,11 +95,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-violet-500/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-violet-500/10 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
             © {new Date().getFullYear()} Portfolio. All rights reserved.
           </p>
-          <p className="text-gray-500 text-sm flex items-center gap-2">
+          <p className="text-gray-500 text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2">
             Built with <span className="text-violet-400">💜</span> using Next.js & Tailwind CSS
           </p>
         </div>

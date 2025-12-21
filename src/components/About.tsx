@@ -97,7 +97,9 @@ export default function About() {
         { opacity: 0, y: 50, scale: 0 },
         { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.5, ease: "back.out(1.7)" },
         0.4
-      );
+      )
+      // ADD PAUSE AFTER PANEL 1
+      .to({}, { duration: 0.7 }, "+=0"); // Pause for 0.3 seconds
 
       // Panel 1 → 2
       tl.to(".panel-1", { 
@@ -105,12 +107,12 @@ export default function About() {
         scale: 0.8, 
         rotationX: 15,
         filter: "blur(20px)", 
-        duration: 0.5 
-      }, 0.9)
+        duration: 1.0 
+      })
       .fromTo(".panel-2",
         { opacity: 0, scale: 1.2, rotationX: -15, filter: "blur(20px)" },
         { opacity: 1, scale: 1, rotationX: 0, filter: "blur(0px)", duration: 0.5 },
-        1.0
+        "-=0.5" // Overlap slightly
       );
 
       // Panel 2: Stats with counter animation
@@ -139,9 +141,10 @@ export default function About() {
               });
             });
           }
-        },
-        1.1
-      );
+        }
+      )
+      // ADD PAUSE AFTER PANEL 2
+      .to({}, { duration: 0.7 }, "+=0"); // Pause for 0.3 seconds
 
       // Panel 2 → 3
       tl.to(".panel-2", { 
@@ -150,24 +153,24 @@ export default function About() {
         y: -100,
         filter: "blur(20px)", 
         duration: 0.5 
-      }, 1.8)
+      })
       .fromTo(".panel-3",
         { opacity: 0, y: 100, filter: "blur(20px)" },
         { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5 },
-        1.9
+        "-=0.3"
       );
 
       // Panel 3: Expertise cards
       tl.fromTo(".expertise-card",
         { opacity: 0, x: -100, rotationY: 45 },
-        { opacity: 1, x: 0, rotationY: 0, stagger: 0.12, duration: 0.5, ease: "power3.out" },
-        2.0
+        { opacity: 1, x: 0, rotationY: 0, stagger: 0.12, duration: 0.5, ease: "power3.out" }
       )
       .fromTo(".skill-tag",
         { opacity: 0, scale: 0 },
-        { opacity: 1, scale: 1, stagger: 0.03, duration: 0.3, ease: "back.out(1.7)" },
-        2.2
-      );
+        { opacity: 1, scale: 1, stagger: 0.03, duration: 0.3, ease: "back.out(1.7)" }
+      )
+      // ADD PAUSE AFTER PANEL 3
+      .to({}, { duration: 0.7 }, "+=0"); // Pause for 0.3 seconds
 
       // Panel 3 → 4
       tl.to(".panel-3", { 
@@ -175,29 +178,28 @@ export default function About() {
         scale: 0.9,
         filter: "blur(20px)", 
         duration: 0.5 
-      }, 2.8)
+      })
       .fromTo(".panel-4",
         { opacity: 0, scale: 1.1, filter: "blur(20px)" },
         { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5 },
-        2.9
+        "-=0.3"
       );
 
       // Panel 4: CTA
       tl.fromTo(".cta-title span",
         { opacity: 0, y: 50, rotationX: -45 },
-        { opacity: 1, y: 0, rotationX: 0, stagger: 0.08, duration: 0.4 },
-        3.0
+        { opacity: 1, y: 0, rotationX: 0, stagger: 0.08, duration: 0.4 }
       )
       .fromTo(".cta-button",
         { opacity: 0, y: 30, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.4, ease: "back.out(1.7)" },
-        3.2
+        { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.4, ease: "back.out(1.7)" }
       )
       .fromTo(".orbit-ring",
         { opacity: 0, scale: 0, rotation: -180 },
-        { opacity: 1, scale: 1, rotation: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" },
-        3.1
-      );
+        { opacity: 1, scale: 1, rotation: 0, stagger: 0.1, duration: 0.6, ease: "power3.out" }
+      )
+      // ADD PAUSE AFTER PANEL 4 (final pause)
+      .to({}, { duration: 0.7 }, "+=0"); // Longer pause at the end
 
       // Continuous animations
       gsap.to(".float-slow", { y: -20, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
@@ -289,7 +291,7 @@ export default function About() {
 
       {/* Main content */}
       <div className="relative z-10 w-full min-h-screen flex items-center justify-center" style={{ perspective: "1200px" }}>
-        <div className="w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 xl:px-20">
 
           {/* Panel 1: Epic Intro */}
           <div className="panel-1 absolute inset-0 flex items-center justify-center">
@@ -313,10 +315,10 @@ export default function About() {
 
               {/* Main text */}
               <div className="relative" style={{ transform: `rotateX(${mousePos.y * 0.1}deg) rotateY(${mousePos.x * 0.1}deg)` }}>
-                <span className="hero-text-line block text-sm sm:text-base text-violet-400 tracking-[0.3em] uppercase mb-4">
+                <span className="hero-text-line block text-xs sm:text-sm lg:text-base text-violet-400 tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4">
                   Discover
                 </span>
-                <h2 className="hero-text-line text-[15vw] sm:text-[12vw] lg:text-[10vw] font-black leading-[0.85] tracking-tighter">
+                <h2 className="hero-text-line text-[18vw] sm:text-[15vw] md:text-[12vw] lg:text-[10vw] font-black leading-[0.85] tracking-tighter">
                   <span className="block bg-gradient-to-r from-white via-white to-zinc-400 bg-clip-text text-transparent">
                     WHO I
                   </span>
@@ -324,7 +326,7 @@ export default function About() {
                     AM
                   </span>
                 </h2>
-                <p className="hero-text-line mt-8 text-lg sm:text-xl text-zinc-500 max-w-lg mx-auto">
+                <p className="hero-text-line mt-4 sm:mt-6 lg:mt-8 text-sm sm:text-lg lg:text-xl text-zinc-500 max-w-lg mx-auto px-4 sm:px-0">
                   A developer passionate about creating 
                   <span className="text-white"> extraordinary </span>
                   digital experiences
@@ -332,10 +334,10 @@ export default function About() {
               </div>
 
               {/* Scroll hint */}
-              <div className="hero-text-line absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-                <span className="text-xs text-zinc-600 tracking-widest uppercase">Scroll to explore</span>
-                <div className="w-5 h-8 rounded-full border border-zinc-700 flex justify-center p-1">
-                  <div className="w-1 h-2 rounded-full bg-violet-500 animate-bounce" />
+              <div className="hero-text-line absolute -bottom-16 sm:-bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 sm:gap-3">
+                <span className="text-[10px] sm:text-xs text-zinc-600 tracking-widest uppercase">Scroll to explore</span>
+                <div className="w-4 sm:w-5 h-6 sm:h-8 rounded-full border border-zinc-700 flex justify-center p-1">
+                  <div className="w-0.5 sm:w-1 h-1.5 sm:h-2 rounded-full bg-violet-500 animate-bounce" />
                 </div>
               </div>
             </div>
@@ -343,35 +345,35 @@ export default function About() {
 
           {/* Panel 2: Stats */}
           <div className="panel-2 absolute inset-0 flex items-center justify-center opacity-0">
-            <div className="w-full max-w-5xl mx-auto px-4">
-              <div className="text-center mb-16">
-                <span className="text-sm text-cyan-400 tracking-widest uppercase">Numbers speak</span>
-                <h3 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+            <div className="w-full max-w-5xl mx-auto px-2 sm:px-4">
+              <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+                <span className="text-xs sm:text-sm text-cyan-400 tracking-widest uppercase">Numbers speak</span>
+                <h3 className="mt-2 sm:mt-3 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                   My <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">Impact</span>
                 </h3>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                 {stats.map((stat, index) => (
                   <div 
                     key={index}
                     className="stat-card group relative"
                     style={{ transformStyle: "preserve-3d" }}
                   >
-                    <div className="relative p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/50 border border-zinc-800/50 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-violet-500/50 hover:scale-105">
+                    <div className="relative p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/50 border border-zinc-800/50 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-violet-500/50 hover:scale-105">
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-cyan-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
                       {/* Icon */}
-                      <div className="text-4xl mb-4">{stat.icon}</div>
+                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4">{stat.icon}</div>
                       
                       {/* Counter */}
-                      <div className="text-3xl sm:text-4xl lg:text-6xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+                      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
                         {counters[index]}{stat.suffix}
                       </div>
                       
                       {/* Label */}
-                      <div className="mt-2 text-sm text-zinc-500 font-medium">{stat.label}</div>
+                      <div className="mt-1 sm:mt-2 text-xs sm:text-sm text-zinc-500 font-medium">{stat.label}</div>
                       
                       {/* Decorative line */}
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -384,44 +386,44 @@ export default function About() {
 
           {/* Panel 3: Expertise */}
           <div className="panel-3 absolute inset-0 flex items-center justify-center opacity-0">
-            <div className="w-full max-w-6xl mx-auto px-4">
-              <div className="text-center mb-12">
-                <span className="text-sm text-fuchsia-400 tracking-widest uppercase">What I do</span>
-                <h3 className="mt-3 text-4xl sm:text-5xl font-bold text-white">
+            <div className="w-full max-w-6xl mx-auto px-2 sm:px-4">
+              <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+                <span className="text-xs sm:text-sm text-fuchsia-400 tracking-widest uppercase">What I do</span>
+                <h3 className="mt-2 sm:mt-3 text-2xl sm:text-4xl lg:text-5xl font-bold text-white">
                   Areas of <span className="bg-gradient-to-r from-fuchsia-400 to-violet-400 bg-clip-text text-transparent">Expertise</span>
                 </h3>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                 {expertise.map((item, index) => (
                   <div 
                     key={index}
                     className="expertise-card group relative"
                   >
-                    <div className="relative p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-violet-500/30">
+                    <div className="relative p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:border-violet-500/30">
                       {/* Gradient overlay on hover */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                       
-                      <div className="relative flex gap-5">
+                      <div className="relative flex gap-3 sm:gap-4 lg:gap-5">
                         {/* Icon */}
-                        <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${item.gradient} p-[1px]`}>
-                          <div className="w-full h-full rounded-xl bg-zinc-900 flex items-center justify-center text-2xl">
+                        <div className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br ${item.gradient} p-[1px]`}>
+                          <div className="w-full h-full rounded-lg sm:rounded-xl bg-zinc-900 flex items-center justify-center text-lg sm:text-xl lg:text-2xl">
                             {item.icon}
                           </div>
                         </div>
                         
-                        <div className="flex-1">
-                          <h4 className="text-xl font-bold text-white group-hover:text-violet-400 transition-colors">
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:text-violet-400 transition-colors">
                             {item.title}
                           </h4>
-                          <p className="mt-1 text-sm text-zinc-500">{item.desc}</p>
+                          <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-zinc-500 line-clamp-2">{item.desc}</p>
                           
                           {/* Skill tags */}
-                          <div className="mt-4 flex flex-wrap gap-2">
+                          <div className="mt-2 sm:mt-3 lg:mt-4 flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2">
                             {item.skills.map((skill, i) => (
                               <span 
                                 key={i}
-                                className="skill-tag px-3 py-1 text-xs rounded-full bg-zinc-800/80 text-zinc-400 border border-zinc-700/50 hover:border-violet-500/50 hover:text-white transition-all"
+                                className="skill-tag px-2 sm:px-2.5 lg:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs rounded-full bg-zinc-800/80 text-zinc-400 border border-zinc-700/50 hover:border-violet-500/50 hover:text-white transition-all"
                               >
                                 {skill}
                               </span>
@@ -438,25 +440,25 @@ export default function About() {
 
           {/* Panel 4: CTA */}
           <div className="panel-4 absolute inset-0 flex items-center justify-center opacity-0">
-            <div className="relative text-center">
+            <div className="relative text-center px-4">
               {/* Orbit rings - scaled for mobile */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="orbit-ring absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-500/20 rotate-slow" />
-                <div className="orbit-ring absolute w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-fuchsia-500/15" style={{ animation: "spin 25s linear infinite reverse" }} />
-                <div className="orbit-ring absolute w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/10 rotate-slow" />
+                <div className="orbit-ring absolute w-[160px] h-[160px] xs:w-[200px] xs:h-[200px] sm:w-[300px] sm:h-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-500/20 rotate-slow" />
+                <div className="orbit-ring absolute w-[220px] h-[220px] xs:w-[280px] xs:h-[280px] sm:w-[400px] sm:h-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-fuchsia-500/15" style={{ animation: "spin 25s linear infinite reverse" }} />
+                <div className="orbit-ring absolute w-[280px] h-[280px] xs:w-[350px] xs:h-[350px] sm:w-[500px] sm:h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-500/10 rotate-slow" />
               </div>
 
               {/* Content */}
               <div className="relative z-10">
-                <div className="mb-8">
-                  <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-violet-600 to-cyan-600 p-[2px] pulse-glow">
-                    <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center text-4xl">
+                <div className="mb-4 sm:mb-6 lg:mb-8">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto rounded-full bg-gradient-to-br from-violet-600 to-cyan-600 p-[2px] pulse-glow">
+                    <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center text-2xl sm:text-3xl lg:text-4xl">
                       🤝
                     </div>
                   </div>
                 </div>
 
-                <h3 className="cta-title text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                <h3 className="cta-title text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                   {"Let's Work".split("").map((char, i) => (
                     <span key={i} className="inline-block text-white">
                       {char === " " ? "\u00A0" : char}
@@ -470,14 +472,14 @@ export default function About() {
                   ))}
                 </h3>
 
-                <p className="text-lg text-zinc-500 mb-10 max-w-md mx-auto">
+                <p className="text-sm sm:text-base lg:text-lg text-zinc-500 mb-6 sm:mb-8 lg:mb-10 max-w-md mx-auto px-2">
                   Ready to bring your vision to life? Let&apos;s create something amazing.
                 </p>
 
-                <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+                <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 lg:gap-x-10 gap-y-3 sm:gap-y-4">
                   <a 
                     href="#contact" 
-                    className="cta-button group relative text-white font-medium text-xl"
+                    className="cta-button group relative text-white font-medium text-base sm:text-lg lg:text-xl"
                   >
                     <span className="relative z-10">Get In Touch</span>
                     <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-violet-500 to-cyan-500 origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-300" />
@@ -490,9 +492,9 @@ export default function About() {
                   <a 
                     href="/Azzeddine Hani Benchalel.pdf" 
                     download 
-                    className="cta-button group relative text-zinc-400 font-medium text-xl hover:text-zinc-200 transition-colors duration-200 flex items-center gap-2"
+                    className="cta-button group relative text-zinc-400 font-medium text-base sm:text-lg lg:text-xl hover:text-zinc-200 transition-colors duration-200 flex items-center gap-1.5 sm:gap-2"
                   >
-                    <svg className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                     <span>Download CV</span>

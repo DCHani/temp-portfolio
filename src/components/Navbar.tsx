@@ -24,9 +24,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-bold gradient-text hover:opacity-80 transition-opacity"
+            className="text-lg sm:text-xl font-bold gradient-text hover:opacity-80 transition-opacity"
           >
-            {"<Portfolio />"}
+            {"<Hani />"}
           </Link>
 
           {/* Desktop Navigation */}
@@ -47,9 +47,12 @@ export default function Navbar() {
           <div className="hidden md:block">
             <a
               href="#contact"
-              className="px-4 py-2 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-medium hover:opacity-90 transition-opacity glow"
+              className="group relative text-white font-medium transition-all duration-300"
             >
-              Hire Me
+              <span className="relative">
+                Get in Touch
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-cyan-500 group-hover:w-full transition-all duration-500 ease-out" />
+              </span>
             </a>
           </div>
 
@@ -98,9 +101,13 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
-            className="block w-full text-center px-4 py-2 rounded-full bg-linear-to-r from-violet-600 to-cyan-600 text-white font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="group relative block w-full text-center text-white font-medium py-2 transition-all duration-300"
           >
-            Hire Me
+            <span className="relative">
+              Get in Touch
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-cyan-500 group-hover:w-full transition-all duration-500 ease-out" />
+            </span>
           </a>
         </div>
       </div>

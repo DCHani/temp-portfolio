@@ -241,23 +241,23 @@ export default function Projects() {
             <div className="max-w-7xl mx-auto px-6 lg:px-20 w-full">
               <div className="max-w-3xl">
                 {/* Project number & year */}
-                <div className="flex items-center gap-4 mb-8">
+                <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
                   <div 
-                    className="flex items-center justify-center w-16 h-16 rounded-2xl border-2"
+                    className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl border-2"
                     style={{ 
                       borderColor: `${project.color}50`,
                       background: `${project.color}10`,
                     }}
                   >
                     <span 
-                      className="text-2xl font-black"
+                      className="text-xl sm:text-2xl font-black"
                       style={{ color: project.color }}
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-zinc-500 uppercase tracking-widest">Featured Project</span>
+                    <span className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest">Featured Project</span>
                     <span className="text-sm text-zinc-400">{project.year}</span>
                   </div>
                 </div>
@@ -389,26 +389,33 @@ export default function Projects() {
             Let&apos;s collaborate and build something extraordinary together.
           </p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          {/* CTA links */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
             <a 
               href="#contact"
-              className="group px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-semibold text-base sm:text-lg transition-all duration-300 hover:shadow-lg hover:shadow-violet-500/25 hover:scale-105"
+              className="group relative text-xl sm:text-2xl lg:text-3xl font-semibold text-white transition-all duration-300"
             >
               <span className="flex items-center gap-3">
-                Start a Project
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <span className="relative">
+                  Start a Project
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-cyan-500 group-hover:w-full transition-all duration-500 ease-out" />
+                </span>
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-violet-400 group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
               </span>
             </a>
+            <span className="hidden sm:block w-px h-8 bg-zinc-700" />
             <a 
               href="https://github.com/DCHani"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-zinc-800/50 border border-zinc-700 text-zinc-300 font-semibold text-base sm:text-lg hover:bg-zinc-800 hover:border-zinc-600 transition-all"
+              className="group relative text-xl sm:text-2xl lg:text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300"
             >
-              View GitHub
+              <span className="relative">
+                View GitHub
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-zinc-500 group-hover:w-full transition-all duration-500 ease-out" />
+              </span>
             </a>
           </div>
         </div>

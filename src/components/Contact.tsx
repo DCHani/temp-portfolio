@@ -211,18 +211,18 @@ export default function Contact() {
           <div className="contact-left space-y-10">
             {/* Header */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-px w-12 bg-gradient-to-r from-violet-500 to-transparent" />
-                <span className="text-sm text-violet-400 uppercase tracking-widest">Get In Touch</span>
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-violet-500 to-transparent" />
+                <span className="text-xs sm:text-sm text-violet-400 uppercase tracking-widest">Get In Touch</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
                 Let&apos;s Work
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
                   Together
                 </span>
               </h2>
-              <p className="text-zinc-400 text-base sm:text-lg max-w-md leading-relaxed">
+              <p className="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-md leading-relaxed">
                 Have a project in mind? I&apos;d love to hear about it. 
                 Let&apos;s discuss how we can bring your ideas to life.
               </p>
@@ -292,9 +292,9 @@ export default function Contact() {
           <div className="contact-right">
             <div className="relative p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-zinc-900/50 border border-zinc-800/50 backdrop-blur-sm">
               {/* Form header */}
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">Send a Message</h3>
-                <p className="text-zinc-500 text-sm">Fill out the form below and I&apos;ll get back to you soon.</p>
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5 sm:mb-2">Send a Message</h3>
+                <p className="text-zinc-500 text-xs sm:text-sm">Fill out the form below and I&apos;ll get back to you soon.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">

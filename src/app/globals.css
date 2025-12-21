@@ -1,6 +1,15 @@
 /* stylelint-disable at-rule-no-unknown */
 @import "tailwindcss";
 
+/* Custom xs breakpoint for extra small screens */
+@custom-media --xs (width >= 375px);
+
+@variant xs {
+  @media (--xs) {
+    @slot;
+  }
+}
+
 :root {
   --background: #0a0a0f;
   --foreground: #ededed;

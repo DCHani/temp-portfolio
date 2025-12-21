@@ -242,7 +242,7 @@ export default function Hero() {
 
               {/* Heading */}
               <div className="space-y-3">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.9]">
+                <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.9]">
                   <span className="block text-white">Azzeddine</span>
                   <span className="block mt-2">
                     <span className="text-white">Hani </span>
@@ -253,7 +253,7 @@ export default function Hero() {
               </div>
 
               {/* Role - Enhanced Typewriter */}
-              <div className="flex items-center gap-3 text-xl sm:text-2xl h-10">
+              <div className="flex items-center gap-2 sm:gap-3 text-lg sm:text-xl lg:text-2xl h-8 sm:h-10">
                 <span className="text-zinc-600">&lt;</span>
                 <span className="text-violet-400 font-mono">{displayText}</span>
                 <span className="relative w-[3px] h-7 overflow-hidden">
@@ -263,29 +263,29 @@ export default function Hero() {
               </div>
 
               {/* Description */}
-              <p className="text-base sm:text-lg text-zinc-500 max-w-xl leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-zinc-500 max-w-xl leading-relaxed">
                 Building <span className="text-zinc-300">high-performance applications</span> and 
                 <span className="text-zinc-300"> intelligent systems</span> that transform ideas into impactful digital experiences.
               </p>
 
               {/* Text Link CTAs */}
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-4">
-                <a href="#projects" className="group relative text-white font-medium text-lg">
+              <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-8 gap-y-3 sm:gap-y-4 pt-4">
+                <a href="#projects" className="group relative text-white font-medium text-base sm:text-lg">
                   <span className="relative z-10">View Projects</span>
                   <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-violet-500 to-cyan-500 origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-300" />
                   <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300 delay-100" />
-                  <svg className="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="inline-block ml-1.5 sm:ml-2 w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
 
-                <a href="#contact" className="group relative text-zinc-400 font-medium text-lg hover:text-white transition-colors duration-200">
+                <a href="#contact" className="group relative text-zinc-400 font-medium text-base sm:text-lg hover:text-white transition-colors duration-200">
                   <span>Get in Touch</span>
                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-zinc-400 group-hover:w-full transition-all duration-300" />
                 </a>
 
-                <a href="/Azzeddine Hani Benchalel.pdf" download className="group relative text-zinc-500 font-medium text-lg hover:text-zinc-300 transition-colors duration-200 flex items-center gap-2">
-                  <svg className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="/Azzeddine Hani Benchalel.pdf" download className="group relative text-zinc-500 font-medium text-base sm:text-lg hover:text-zinc-300 transition-colors duration-200 flex items-center gap-1.5 sm:gap-2">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   <span>Resume</span>
@@ -294,15 +294,15 @@ export default function Hero() {
               </div>
 
               {/* Stats */}
-              <div className="flex flex-wrap gap-10 pt-10 border-t border-zinc-800/60">
+              <div className="flex flex-wrap gap-6 sm:gap-10 pt-8 sm:pt-10 border-t border-zinc-800/60">
                 {[
                   { value: "5+", label: "Years Exp." },
                   { value: "20+", label: "Projects" },
                   { value: "15+", label: "Technologies" },
                 ].map((stat, index) => (
                   <div key={index} className="hero-stat">
-                    <div className="text-3xl sm:text-4xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-zinc-600 mt-1">{stat.label}</div>
+                    <div className="text-2xl xs:text-3xl sm:text-4xl font-bold text-white">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-zinc-600 mt-1">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -310,7 +310,7 @@ export default function Hero() {
 
             {/* Right Visual - Enhanced Orbit System */}
             <div className="hero-visual relative flex items-center justify-center lg:justify-end">
-              <div className="hero-float relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[500px] lg:h-[500px]">
+              <div className="hero-float relative w-[280px] h-[280px] xs:w-[320px] xs:h-[320px] sm:w-[400px] sm:h-[400px] lg:w-[480px] lg:h-[480px] xl:w-[520px] xl:h-[520px]">
                 
                 {/* Pulsing glow behind */}
                 <div className="pulse-glow absolute inset-[-20%] rounded-full bg-gradient-to-br from-violet-600/20 via-transparent to-cyan-600/20 blur-3xl" />

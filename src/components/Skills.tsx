@@ -112,7 +112,7 @@ export default function Skills() {
           duration: 0.2,
           ease: "power2.out",
         },
-        0.3
+        0
       );
 
     }, sectionRef);
@@ -197,8 +197,8 @@ export default function Skills() {
         ))}
       </div>
 
-      {/* Section indicator */}
-      <div className="absolute top-8 left-8 z-20 hidden md:flex items-center gap-4">
+      {/* Section indicator - hidden on md, show on lg */}
+      <div className="absolute top-8 left-8 z-20 hidden lg:flex items-center gap-4">
         <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-zinc-800">
           03
         </span>
@@ -210,13 +210,13 @@ export default function Skills() {
 
       {/* Main content */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xs:gap-4 md:gap-8 lg:gap-12 xl:gap-20 items-center">
             
             {/* Left side - Circular visualization */}
-            <div className="relative hidden lg:flex items-center justify-center">
+            <div className="relative flex items-center justify-center order-first md:order-none">
               {/* Central ring */}
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
                 {/* Outer rotating ring */}
                 <div className="skill-ring absolute inset-0 rounded-full border border-zinc-800">
                   {skills.map((skill, i) => {
@@ -228,7 +228,7 @@ export default function Skills() {
                     return (
                       <div
                         key={skill.name}
-                        className={`absolute w-3 h-3 rounded-full transition-all duration-500 ${
+                        className={`absolute w-1.5 h-1.5 xs:w-2 xs:h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-500 ${
                           i === activeSkill ? "scale-150" : "scale-100"
                         }`}
                         style={{
@@ -244,20 +244,20 @@ export default function Skills() {
                 </div>
 
                 {/* Middle ring */}
-                <div className="absolute inset-8 rounded-full border border-zinc-800/50" />
+                <div className="absolute inset-4 xs:inset-5 md:inset-6 lg:inset-7 xl:inset-8 rounded-full border border-zinc-800/50" />
 
                 {/* Inner content */}
-                <div className="absolute inset-16 rounded-full bg-zinc-900/50 border border-zinc-800 flex flex-col items-center justify-center backdrop-blur-sm">
+                <div className="absolute inset-7 xs:inset-8 sm:inset-9 md:inset-10 lg:inset-14 xl:inset-16 rounded-full bg-zinc-900/50 border border-zinc-800 flex flex-col items-center justify-center backdrop-blur-sm">
                   <span
-                    className="text-6xl lg:text-7xl font-black transition-colors duration-300"
+                    className="text-2xl xs:text-3xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-7xl font-black transition-colors duration-300"
                     style={{ color: skills[activeSkill].color }}
                   >
                     {counts[activeSkill]}%
                   </span>
-                  <span className="text-xl lg:text-2xl font-bold text-white mt-2">
+                  <span className="text-[10px] xs:text-xs sm:text-sm md:text-sm lg:text-xl xl:text-2xl font-bold text-white mt-0.5 lg:mt-1 xl:mt-2">
                     {skills[activeSkill].name}
                   </span>
-                  <span className="text-xs text-zinc-500 uppercase tracking-widest mt-1">
+                  <span className="text-[6px] xs:text-[7px] md:text-[8px] lg:text-[10px] xl:text-xs text-zinc-500 uppercase tracking-widest mt-0.5 lg:mt-1">
                     Proficiency
                   </span>
                 </div>
@@ -269,8 +269,23 @@ export default function Skills() {
                 />
               </div>
 
-              {/* Skill list */}
-              <div className="absolute -right-4 lg:right-0 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+              {/* Mobile skill dots indicator */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 md:hidden">
+                {skills.map((skill, i) => (
+                  <button
+                    key={skill.name}
+                    onClick={() => setActiveSkill(i)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeSkill ? 'scale-125' : ''}`}
+                    style={{
+                      background: i <= activeSkill ? skill.color : '#3f3f46',
+                      boxShadow: i === activeSkill ? `0 0 8px ${skill.color}` : 'none',
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Skill list - hidden on md, show on lg */}
+              <div className="absolute -right-4 lg:right-0 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-2">
                 {skills.map((skill, i) => (
                   <div
                     key={skill.name}
@@ -300,82 +315,82 @@ export default function Skills() {
             </div>
 
             {/* Right side - Expertise cards */}
-            <div className="space-y-6">
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
+            <div className="space-y-3 md:space-y-4 lg:space-y-5 xl:space-y-6">
+              <div className="mb-1.5 xs:mb-2 md:mb-3 lg:mb-6 xl:mb-8">
+                <h2 className="text-lg xs:text-xl sm:text-2xl md:text-2xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 xs:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4">
                   My Tech Stack
                 </h2>
-                <p className="text-zinc-400 text-base sm:text-lg max-w-md">
+                <p className="text-zinc-400 text-[9px] xs:text-[10px] sm:text-[11px] md:text-xs lg:text-base xl:text-lg max-w-lg">
                   Years of experience crafting digital solutions with cutting-edge technologies
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-1.5 xs:gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 xl:gap-5">
                 {expertise.map((item, i) => (
                   <div
                     key={item.title}
-                    className="expertise-card group relative p-4 sm:p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300 hover:bg-zinc-800/30"
+                    className="expertise-card group relative p-2 xs:p-2.5 sm:p-3 md:p-3 lg:p-4 xl:p-5 rounded-md xs:rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-2xl bg-zinc-900/50 border border-zinc-800/50 hover:border-zinc-700 transition-all duration-300 hover:bg-zinc-800/30"
                   >
-                    {/* Icon */}
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 flex items-center justify-center text-violet-400 mb-4 group-hover:scale-110 transition-transform">
-                      {item.icon}
+                    {/* Icon and Title - inline on small/medium heights, stacked on large */}
+                    <div className="flex items-center gap-2 mb-1 xs:mb-1.5 sm:mb-2 xl:flex-col xl:items-start xl:gap-0">
+                      <div className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-md xs:rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 flex items-center justify-center text-violet-400 xl:mb-4 group-hover:scale-110 transition-transform [&>svg]:w-4 [&>svg]:h-4 xs:[&>svg]:w-5 xs:[&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6 md:[&>svg]:w-7 md:[&>svg]:h-7 lg:[&>svg]:w-8 lg:[&>svg]:h-8 shrink-0">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg font-bold text-white xl:mb-2">{item.title}</h3>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-
                     {/* Description */}
-                    <p className="text-sm text-zinc-500 mb-4 line-clamp-2">
+                    <p className="text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm text-zinc-500 mb-1 xs:mb-1.5 sm:mb-2 md:mb-2 lg:mb-3 xl:mb-4 line-clamp-2">
                       {item.description}
                     </p>
 
                     {/* Tech tags */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.techs.slice(0, 3).map((tech) => (
+                    <div className="flex flex-wrap gap-0.5 xs:gap-1 md:gap-1.5">
+                      {item.techs.slice(0, 2).map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-2 py-1 rounded-md bg-zinc-800 text-zinc-400"
+                          className="text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs px-1 xs:px-1.5 sm:px-1.5 md:px-2 py-0.5 md:py-1 rounded-sm xs:rounded md:rounded-md bg-zinc-800 text-zinc-400"
                         >
                           {tech}
                         </span>
                       ))}
                       {item.techs.length > 3 && (
-                        <span className="text-xs px-2 py-1 rounded-md bg-zinc-800 text-zinc-500">
+                        <span className="text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs px-1 xs:px-1.5 sm:px-1.5 md:px-2 py-0.5 md:py-1 rounded-sm xs:rounded md:rounded-md bg-zinc-800 text-zinc-500">
                           +{item.techs.length - 3}
                         </span>
                       )}
                     </div>
 
                     {/* Hover gradient */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                    <div className="absolute inset-0 rounded-md xs:rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-2xl bg-gradient-to-br from-violet-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   </div>
                 ))}
               </div>
 
               {/* Stats row */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-8 pt-4 sm:pt-6 border-t border-zinc-800/50">
+              {/* <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 md:gap-4 lg:gap-6 xl:gap-8 pt-2 md:pt-3 lg:pt-5 xl:pt-6 border-t border-zinc-800/50">
                 <div className="text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-bold text-white">15+</span>
-                  <span className="block text-xs sm:text-sm text-zinc-500">Technologies</span>
+                  <span className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">15+</span>
+                  <span className="block text-[9px] md:text-[10px] lg:text-xs xl:text-sm text-zinc-500">Technologies</span>
                 </div>
-                <div className="w-px h-8 sm:h-10 bg-zinc-800 hidden sm:block" />
+                <div className="w-px h-5 md:h-6 lg:h-8 xl:h-10 bg-zinc-800 hidden sm:block" />
                 <div className="text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-bold text-white">5+</span>
-                  <span className="block text-xs sm:text-sm text-zinc-500">Years Exp.</span>
+                  <span className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">5+</span>
+                  <span className="block text-[9px] md:text-[10px] lg:text-xs xl:text-sm text-zinc-500">Years Exp.</span>
                 </div>
-                <div className="w-px h-8 sm:h-10 bg-zinc-800 hidden sm:block" />
+                <div className="w-px h-5 md:h-6 lg:h-8 xl:h-10 bg-zinc-800 hidden sm:block" />
                 <div className="text-center sm:text-left">
-                  <span className="text-2xl sm:text-3xl font-bold text-white">20+</span>
-                  <span className="block text-xs sm:text-sm text-zinc-500">Projects</span>
+                  <span className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">20+</span>
+                  <span className="block text-[9px] md:text-[10px] lg:text-xs xl:text-sm text-zinc-500">Projects</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll progress indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-3 text-zinc-600">
+      <div className="absolute bottom-3 xs:bottom-4 md:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 xs:gap-3 text-zinc-600">
         <div className="flex gap-1.5">
           {skills.map((_, i) => (
             <div
@@ -391,7 +406,7 @@ export default function Skills() {
         </span>
       </div>
 
-      {/* Corner decoration */}
+      {/* Corner decoration - hidden on md */}
       <div className="absolute bottom-8 right-8 text-right hidden lg:block">
         <span className="text-[10px] text-zinc-600 uppercase tracking-widest">Scroll to explore</span>
         <div className="mt-2 flex justify-end">
