@@ -213,10 +213,10 @@ export default function Skills() {
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xs:gap-4 md:gap-8 lg:gap-12 xl:gap-20 items-center">
             
-            {/* Left side - Circular visualization */}
-            <div className="relative flex items-center justify-center order-first md:order-none">
+            {/* Mobile Circular visualization - shown only on small screens */}
+            <div className="relative flex md:hidden items-center justify-center order-first">
               {/* Central ring */}
-              <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
+              <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-56 sm:h-56">
                 {/* Outer rotating ring */}
                 <div className="skill-ring absolute inset-0 rounded-full border border-zinc-800">
                   {skills.map((skill, i) => {
@@ -228,7 +228,7 @@ export default function Skills() {
                     return (
                       <div
                         key={skill.name}
-                        className={`absolute w-1.5 h-1.5 xs:w-2 xs:h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-500 ${
+                        className={`absolute w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full transition-all duration-500 ${
                           i === activeSkill ? "scale-150" : "scale-100"
                         }`}
                         style={{
@@ -244,20 +244,20 @@ export default function Skills() {
                 </div>
 
                 {/* Middle ring */}
-                <div className="absolute inset-4 xs:inset-5 md:inset-6 lg:inset-7 xl:inset-8 rounded-full border border-zinc-800/50" />
+                <div className="absolute inset-4 xs:inset-5 rounded-full border border-zinc-800/50" />
 
                 {/* Inner content */}
-                <div className="absolute inset-7 xs:inset-8 sm:inset-9 md:inset-10 lg:inset-14 xl:inset-16 rounded-full bg-zinc-900/50 border border-zinc-800 flex flex-col items-center justify-center backdrop-blur-sm">
+                <div className="absolute inset-7 xs:inset-8 sm:inset-9 rounded-full bg-zinc-900/50 border border-zinc-800 flex flex-col items-center justify-center backdrop-blur-sm">
                   <span
-                    className="text-2xl xs:text-3xl sm:text-3xl md:text-3xl lg:text-5xl xl:text-7xl font-black transition-colors duration-300"
+                    className="text-2xl xs:text-3xl sm:text-3xl font-black transition-colors duration-300"
                     style={{ color: skills[activeSkill].color }}
                   >
                     {counts[activeSkill]}%
                   </span>
-                  <span className="text-[10px] xs:text-xs sm:text-sm md:text-sm lg:text-xl xl:text-2xl font-bold text-white mt-0.5 lg:mt-1 xl:mt-2">
+                  <span className="text-[10px] xs:text-xs sm:text-sm font-bold text-white mt-0.5">
                     {skills[activeSkill].name}
                   </span>
-                  <span className="text-[6px] xs:text-[7px] md:text-[8px] lg:text-[10px] xl:text-xs text-zinc-500 uppercase tracking-widest mt-0.5 lg:mt-1">
+                  <span className="text-[6px] xs:text-[7px] text-zinc-500 uppercase tracking-widest mt-0.5">
                     Proficiency
                   </span>
                 </div>
@@ -270,7 +270,7 @@ export default function Skills() {
               </div>
 
               {/* Mobile skill dots indicator */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 md:hidden">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
                 {skills.map((skill, i) => (
                   <button
                     key={skill.name}
@@ -282,6 +282,63 @@ export default function Skills() {
                     }}
                   />
                 ))}
+              </div>
+            </div>
+
+            {/* Desktop Circular visualization - hidden on small, shown on md+ (OLD CODE) */}
+            <div className="relative hidden md:flex items-center justify-center">
+              {/* Central ring */}
+              <div className="relative w-52 h-52 md:w-60 md:h-60 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
+                {/* Outer rotating ring */}
+                <div className="skill-ring absolute inset-0 rounded-full border border-zinc-800">
+                  {skills.map((skill, i) => {
+                    const angle = (i / skills.length) * 360 - 90;
+                    const rad = (angle * Math.PI) / 180;
+                    const x = 50 + 48 * Math.cos(rad);
+                    const y = 50 + 48 * Math.sin(rad);
+                    
+                    return (
+                      <div
+                        key={skill.name}
+                        className={`absolute w-2 h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-500 ${
+                          i === activeSkill ? "scale-150" : "scale-100"
+                        }`}
+                        style={{
+                          left: `${x}%`,
+                          top: `${y}%`,
+                          transform: "translate(-50%, -50%)",
+                          background: i <= activeSkill ? skill.color : "#27272a",
+                          boxShadow: i === activeSkill ? `0 0 20px ${skill.color}` : "none",
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+
+                {/* Middle ring */}
+                <div className="absolute inset-5 md:inset-6 lg:inset-7 xl:inset-8 rounded-full border border-zinc-800/50" />
+
+                {/* Inner content */}
+                <div className="absolute inset-9 md:inset-10 lg:inset-14 xl:inset-16 rounded-full bg-zinc-900/50 border border-zinc-800 flex flex-col items-center justify-center backdrop-blur-sm">
+                  <span
+                    className="text-3xl md:text-3xl lg:text-5xl xl:text-7xl font-black transition-colors duration-300"
+                    style={{ color: skills[activeSkill].color }}
+                  >
+                    {counts[activeSkill]}%
+                  </span>
+                  <span className="text-xs md:text-sm lg:text-xl xl:text-2xl font-bold text-white mt-0.5 lg:mt-1 xl:mt-2">
+                    {skills[activeSkill].name}
+                  </span>
+                  <span className="text-[7px] md:text-[8px] lg:text-[10px] xl:text-xs text-zinc-500 uppercase tracking-widest mt-0.5 lg:mt-1">
+                    Proficiency
+                  </span>
+                </div>
+
+                {/* Glow effect */}
+                <div
+                  className="absolute inset-0 rounded-full blur-3xl opacity-20 transition-colors duration-700"
+                  style={{ background: skills[activeSkill].color }}
+                />
               </div>
 
               {/* Skill list - hidden on md, show on lg */}
