@@ -47,6 +47,16 @@ const projects = [
     year: "2025",
     color: "#f59e0b",
   },
+  {
+    id: 5,
+    title: "Suturing Robot",
+    description:" An imitation learning-based suturing robot developed using Python and C# in Unity, designed to assist in surgical procedures by automating suturing tasks.",
+    image: "/images/projects/project5.png",
+    tags: ["Imitation Learning", "Robotics", "Python", "C#","Unity"],
+    // demoUrl: "https://minarcoins.com",
+    year: "2025",
+    color: "#d6315a",
+  },
 ];
 
 export default function Projects() {
@@ -71,7 +81,7 @@ export default function Projects() {
       });
 
       const cards = gsap.utils.toArray<HTMLElement>(".project-slide");
-      
+
       cards.forEach((card, i) => {
         ScrollTrigger.create({
           trigger: card,
@@ -166,20 +176,18 @@ export default function Projects() {
         {projects.map((project, i) => (
           <button
             key={i}
-            className={`group relative transition-all duration-500 ${
-              i === activeIndex ? "scale-100" : "scale-75 opacity-50"
-            }`}
+            className={`group relative transition-all duration-500 ${i === activeIndex ? "scale-100" : "scale-75 opacity-50"
+              }`}
             onClick={() => {
               const element = document.querySelectorAll(".project-slide")[i];
               element?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            <div 
-              className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-                i === activeIndex 
-                  ? "scale-125" 
+            <div
+              className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${i === activeIndex
+                  ? "scale-125"
                   : "border-zinc-700 hover:border-zinc-500"
-              }`}
+                }`}
               style={{
                 borderColor: i === activeIndex ? project.color : undefined,
                 background: i === activeIndex ? project.color : "transparent",
@@ -219,18 +227,18 @@ export default function Projects() {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Overlays */}
             <div className="absolute inset-0 bg-[#030305]/75" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030305] via-[#030305]/50 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#030305] via-[#030305]/70 to-transparent" />
-            
+
             {/* Accent glow */}
-            <div 
+            <div
               className="absolute bottom-0 left-0 w-1/2 h-1/2 blur-[150px] opacity-30"
               style={{ background: project.color }}
             />
-            <div 
+            <div
               className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
               style={{ background: project.color }}
             />
@@ -242,14 +250,14 @@ export default function Projects() {
               <div className="max-w-3xl">
                 {/* Project number & year */}
                 <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                  <div 
+                  <div
                     className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl border-2"
-                    style={{ 
+                    style={{
                       borderColor: `${project.color}50`,
                       background: `${project.color}10`,
                     }}
                   >
-                    <span 
+                    <span
                       className="text-xl sm:text-2xl font-black"
                       style={{ color: project.color }}
                     >
@@ -293,46 +301,48 @@ export default function Projects() {
                 </div>
 
                 {/* CTA */}
+                {project.demoUrl && (
                 <a
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 sm:gap-5"
                 >
-                  <span 
+                  <span
                     className="px-6 sm:px-10 py-4 sm:py-5 rounded-full font-semibold text-base sm:text-lg text-white transition-all duration-300 hover:scale-105"
-                    style={{ 
+                    style={{
                       background: `linear-gradient(135deg, ${project.color}, ${project.color}cc)`,
                       boxShadow: `0 10px 40px ${project.color}40`,
                     }}
                   >
                     View Live Site
                   </span>
-                  <div 
+                  <div
                     className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110 hidden sm:flex"
-                    style={{ 
+                    style={{
                       borderColor: `${project.color}50`,
                       background: `${project.color}10`,
                     }}
                   >
-                    <svg 
-                      className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
+                    <svg
+                      className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                       style={{ color: project.color }}
-                      fill="none" 
-                      viewBox="0 0 24 24" 
+                      fill="none"
+                      viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
                     </svg>
                   </div>
                 </a>
+                )}
               </div>
             </div>
           </div>
 
           {/* Large background number */}
           <div className="absolute bottom-0 right-0 lg:bottom-10 lg:right-10 pointer-events-none overflow-hidden">
-            <span 
+            <span
               className="text-[25vw] lg:text-[20vw] font-black leading-none opacity-[0.03]"
               style={{ color: project.color }}
             >
@@ -341,11 +351,11 @@ export default function Projects() {
           </div>
 
           {/* Decorative lines */}
-          <div 
+          <div
             className="absolute top-20 right-20 w-32 h-32 border-t-2 border-r-2 rounded-tr-3xl opacity-20 hidden lg:block"
             style={{ borderColor: project.color }}
           />
-          <div 
+          <div
             className="absolute bottom-20 left-20 w-32 h-32 border-b-2 border-l-2 rounded-bl-3xl opacity-20 hidden lg:block"
             style={{ borderColor: project.color }}
           />
@@ -391,7 +401,7 @@ export default function Projects() {
 
           {/* CTA links */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
-            <a 
+            <a
               href="#contact"
               className="group relative text-xl sm:text-2xl lg:text-3xl font-semibold text-white transition-all duration-300"
             >
@@ -406,7 +416,7 @@ export default function Projects() {
               </span>
             </a>
             <span className="hidden sm:block w-px h-8 bg-zinc-700" />
-            <a 
+            <a
               href="https://github.com/DCHani"
               target="_blank"
               rel="noopener noreferrer"
