@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -24,9 +25,15 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-lg sm:text-xl font-bold gradient-text hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
           >
-            {"<Hani />"}
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={70}
+              height={40}
+              className=" sm:h-10"
+            />
           </Link>
 
           {/* Desktop Navigation */}

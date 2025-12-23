@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const socialLinks = [
   {
@@ -48,8 +49,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Brand */}
           <div className="space-y-3 sm:space-y-4 sm:col-span-2 md:col-span-1">
-            <Link href="/" className="text-xl sm:text-2xl font-bold gradient-text">
-              {"<Hani />"}
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={200}
+                height={60}
+                className="h-12 w-auto sm:h-24"
+              />
             </Link>
             <p className="text-gray-400 text-xs sm:text-sm max-w-xs">
               Building the future, one line of code at a time. Passionate about
@@ -100,7 +107,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Portfolio. All rights reserved.
           </p>
           <p className="text-gray-500 text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2">
-            Built with <span className="text-violet-400">💜</span> using Next.js & Tailwind CSS
+            Built with <span className="text-violet-400">💜</span> By Azzeddine Hani Benchalel
           </p>
         </div>
       </div>
