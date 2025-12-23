@@ -31,9 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0a0f] text-white`}
       >
+        <SmoothScroll>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
