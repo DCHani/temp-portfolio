@@ -19,7 +19,7 @@ const expertise = [
     desc: "Creating great, responsive UIs with React, Next.js & modern CSS",
     icon: "🎨",
     gradient: "from-violet-500 to-fuchsia-500",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind"]
+    skills: ["React", "Next.js", "Flutter", "Tailwind"]
   },
   { 
     title: "Backend Power", 

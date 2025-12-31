@@ -14,7 +14,7 @@ const skills = [
   { name: "Python", level: 92, color: "#3776AB" },
   { name: "TensorFlow", level: 85, color: "#FF6F00" },
   { name: "PostgreSQL", level: 85, color: "#4169E1" },
-  { name: "Docker", level: 78, color: "#2496ED" },
+  { name: "Flutter", level: 78, color: "#2496ED" },
 ];
 
 const expertise = [
